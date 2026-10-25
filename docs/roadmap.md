@@ -77,7 +77,9 @@ E0-1 y E0-3 pueden hacerse en paralelo con E1. E0-2 necesita E6-1 (el script) y 
 
 ## E4. Mensaje, misa y cuenta regresiva
 
-- [ ] **E4-1 Mensaje** (§5.3): luz diagonal y flores al pie.
+- [x] ~~**E4-1 Mensaje** (§5.3): luz diagonal y flores al pie.~~ **Hecho (2026-10-25)**
+  Decisions (2026-10-25, gate): tier standard, `opencode-go/kimi-k2.7-code`, size S; static `<section class="mensaje">` after the vocation section, text set by `src/modules/mensaje.ts` from `content.textos.mensaje`; full bleed like the vocation band, marfil → luz-calida-suave background; rays are four soft diagonal `linear-gradient` bands from the top-left corner in opaque tokens, limited to ≤ 25 % by the `::before` opacity only (breathing 0.17 ↔ 0.25 over 9 s, fixed 0.21 under reduced motion) and masked out towards the bottom; the existing 1600 px `flores-borde.webp` (80 KB, lazy) edge to edge at the foot, no re-export; text and flowers added to the reveal as text (fade + rise, no blur).
+  Closing notes: review fixes: the rays were invisible (gradient alpha × layer opacity ≈ 5 %); the flowers were inset by the section padding. Verified in `vite preview` at 375×812 (no horizontal overflow, flowers 375 px wide flush with the section bottom, clean console, no layout shift caused by the section).
 - [ ] **E4-2 Tarjeta de misa** (§5.4): fecha, hora y lugar con iconos (cada línea solo si existe su dato).
 - [ ] **E4-3 Cuenta regresiva**: función pura `estado(ahora, inicio)` con tres estados (BR6): antes de las 11:00 de Lima, cuenta regresiva (también esa misma mañana); de 11:00 a 14:00, "Hoy nos reunimos…"; después, "Gracias…".
   *Hecho cuando:* `node --test src/modules/countdown.test.ts` y `TZ=Europe/Madrid node --test src/modules/countdown.test.ts` pasan, cubriendo 10:59:59, 11:00, 13:59:59 y 14:00 de Lima.
