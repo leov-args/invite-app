@@ -125,7 +125,63 @@ export const content = {
       comoLlegar: "Cómo llegar",
       confirmar: "Confirmar asistencia",
     },
+    // Gallery section (SPEC §5.7).
+    galeria: {
+      titulo: "MOMENTOS",
+      subtitulo: "Su sonrisa, su familia, su vocación.",
+    },
   },
+  // SPEC §5.7 order; paths without leading "/" or extension; family reviews the alts (F10).
+  galeria: [
+    {
+      src: "assets/fotos/06-celebracion-grupo",
+      alt: "Juana Neyi junto a familiares y amigos, reunidos frente a un local decorado con globos azules",
+      w: 960,
+      h: 960,
+    },
+    {
+      src: "assets/fotos/07-baile",
+      alt: "Juana Neyi sonriendo mientras baila tomada de la mano con un señor mayor de terno azul",
+      w: 900,
+      h: 900,
+    },
+    {
+      src: "assets/fotos/08-fiesta-familiar",
+      alt: "Juana Neyi brindando en una fiesta familiar junto a un señor mayor con sombrero de papel",
+      w: 774,
+      h: 774,
+    },
+    {
+      src: "assets/fotos/09-terraza",
+      alt: "Juana Neyi sonriendo con lentes de sol y blusa a rayas, sentada en una terraza",
+      w: 581,
+      h: 581,
+    },
+    {
+      src: "assets/fotos/04-enfermera-colegas",
+      alt: "Juana Neyi con uniforme turquesa, abrazada a dos colegas enfermeras frente al hospital",
+      w: 1200,
+      h: 1200,
+    },
+    {
+      src: "assets/fotos/05-hospital-abrazo",
+      alt: "Juana Neyi abrazando con cariño a una colega en la oficina de enfermería",
+      w: 960,
+      h: 960,
+    },
+    {
+      src: "assets/fotos/02-graduacion-diploma",
+      alt: "Juana Neyi el día de su graduación de enfermería, con uniforme blanco, cofia y un ramillete de flores en el pecho",
+      w: 660,
+      h: 660,
+    },
+    {
+      src: "assets/fotos/03-graduacion-cofia",
+      alt: "Juana Neyi con cofia y uniforme blanco, sentada junto a sus compañeras en la ceremonia de graduación",
+      w: 840,
+      h: 840,
+    },
+  ],
   musica: {
     mp3: "assets/audio/piano-homenaje.mp3",
     ogg: "assets/audio/piano-homenaje.ogg",

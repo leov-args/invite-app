@@ -12,6 +12,7 @@ import { initCountdown } from "./modules/countdown.ts";
 import { initCalendar } from "./modules/calendar.ts";
 import { initLocation } from "./modules/location.ts";
 import { initAlmuerzo } from "./modules/almuerzo.ts";
+import { initGaleria } from "./modules/galeria.ts";
 import { initReveal } from "./modules/reveal.ts";
 
 initOpening();
@@ -24,4 +25,5 @@ initCountdown();
 initCalendar();
 initLocation();
 initAlmuerzo();
+initGaleria();
 initReveal();
