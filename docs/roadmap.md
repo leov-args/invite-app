@@ -31,9 +31,11 @@ E0-1 y E0-3 pueden hacerse en paralelo con E1. E0-2 necesita E6-1 (el script) y 
 
 ## E1. Base y despliegue (RF-03)
 
-- [ ] **E1-1 Scaffold.** Vite + TS sin framework (devDependencies: solo `vite` y `typescript`), `vite.config.ts` con `base`, helper `asset()`, `public/.nojekyll` y `package-lock.json` versionado (lo necesita `npm ci`). Assets: `git mv assets public/assets` y luego `git mv public/assets/paleta.png docs/` (FD7: mover, no copiar).
+- [x] ~~**E1-1 Scaffold.** Vite + TS sin framework (devDependencies: solo `vite` y `typescript`), `vite.config.ts` con `base`, helper `asset()`, `public/.nojekyll` y `package-lock.json` versionado (lo necesita `npm ci`). Assets: `git mv assets public/assets` y luego `git mv public/assets/paleta.png docs/` (FD7: mover, no copiar).
   `tsconfig`: `allowImportingTsExtensions` + `noEmit`, para que `node --test` ejecute los `*.test.ts` sin compilar.
-  *Hecho cuando:* `npm run build` genera `dist/` sin `paleta.png`, `npm run dev` sirve una página vacía y `git ls-files assets` no devuelve nada.
+  *Hecho cuando:* `npm run build` genera `dist/` sin `paleta.png`, `npm run dev` sirve una página vacía y `git ls-files assets` no devuelve nada.~~ **Hecho (2026-10-25)**
+  Decisions: `vite.config.ts` is not type-checked (`include: ["src"]`; `process.env` would need `@types/node`); `*.test.ts` are excluded from `tsc` for the same reason (`node:test` types) and run only under `node --test`; `verbatimModuleSyntax` + `erasableSyntaxOnly` keep `src` loadable by Node type stripping; `npm run check` = `tsc && node --test && vite build`; `asset()` has no test (`import.meta.env` does not exist under `node --test`).
+  Follow-ups for E1-3: replace the placeholder `<title>Invite App</title>` in `index.html` instead of injecting a second one; consider Node 24 in `deploy.yml` (Node 20 is EOL since 2026-04; Vite 8 still accepts `^20.19`).
 - [ ] **E1-2 Tokens, fuentes y `content.ts`.** `tokens.css` (§4.1, §4.4), `fonts.css` con `font-display: swap`, `base.css` (columna de 480 px, fondo de ambiente, grano), y `content.ts` con los datos ya confirmados (§3).
   *Hecho cuando:* una página de prueba muestra Cormorant y Montserrat autoalojadas y los colores de la paleta.
 - [ ] **E1-3 Metadatos y workflow.** Plugin en línea `transformIndexHtml` en `vite.config.ts` que importa `src/content.ts` y escribe `<title>`, `description` y `og:*` absolutos en el HTML compilado (FD1: el rastreador de WhatsApp no ejecuta JS). Además `noindex`, favicon SVG, `theme-color` y `.github/workflows/deploy.yml`.
