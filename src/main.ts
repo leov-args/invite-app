@@ -5,7 +5,9 @@ import "./styles/sections.css";
 import { initOpening } from "./modules/opening.ts";
 import { initMusic } from "./modules/music.ts";
 import { initHero } from "./modules/hero.ts";
+import { initVocacion } from "./modules/vocacion.ts";
 
 initOpening();
 initMusic();
 initHero();
+initVocacion();

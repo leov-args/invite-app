@@ -24,4 +24,14 @@ describe("content.ts", () => {
     assert.ok(content.sitio.descripcion.includes(content.misa.fechaTexto));
     assert.ok(content.sitio.descripcion.includes(content.misa.horaTexto));
   });
+
+  it("vocacion photo paths start with 'assets/' and never with '/', and every alt is non-empty", () => {
+    const photos = content.textos.vocacion.fotos;
+    assert.ok(photos.length > 0, "vocacion photos must not be empty");
+    for (const photo of photos) {
+      assert.ok(photo.src.startsWith("assets/"), `expected ${photo.src} to start with assets/`);
+      assert.ok(!photo.src.startsWith("/"), `expected ${photo.src} not to start with /`);
+      assert.ok(photo.alt.length > 0, "expected every vocacion photo alt to be non-empty");
+    }
+  });
 });
