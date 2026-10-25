@@ -108,6 +108,12 @@ export const content = {
       calendario: "Agregar al calendario",
       googleCalendar: "Google Calendar",
       calendarioTitulo: "Misa en memoria de Juana Neyi Trigueros Balcazar",
+      verUbicacion: "Ver ubicación",
+    },
+    // Location section (SPEC §5.5).
+    ubicacion: {
+      etiqueta: "DÓNDE NOS REUNIREMOS",
+      mapaTitulo: "Mapa: lugar de la misa",
     },
   },
   musica: {

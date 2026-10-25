@@ -8,6 +8,7 @@ const REVEAL_TEXT_SELECTORS = [
   ".mensaje__texto",
   ".mensaje__flores",
   ".misa__tarjeta",
+  ".ubicacion__contenido",
 ];
 
 const REVEAL_FOTO_SELECTORS = [
