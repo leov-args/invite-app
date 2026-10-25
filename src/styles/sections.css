@@ -507,7 +507,8 @@ main:focus {
 /* ── Mass card (SPEC §5.4) ─────────────────────────────────────────── */
 
 .misa,
-.ubicacion {
+.ubicacion,
+.almuerzo {
   position: relative;
   isolation: isolate;
   overflow: clip;
@@ -522,7 +523,8 @@ main:focus {
 }
 
 .misa::before,
-.ubicacion::before {
+.ubicacion::before,
+.almuerzo::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -545,7 +547,8 @@ main:focus {
   );
 }
 
-.misa__tarjeta {
+.misa__tarjeta,
+.almuerzo__tarjeta {
   position: relative;
   max-inline-size: min(100%, 440px);
   margin-inline: auto;
@@ -566,7 +569,8 @@ main:focus {
 }
 
 .misa__etiqueta,
-.ubicacion__etiqueta {
+.ubicacion__etiqueta,
+.almuerzo__etiqueta {
   margin: 0;
   font-family: var(--f-sans);
   font-weight: 500;
@@ -761,6 +765,31 @@ main:focus {
 .misa__boton:focus-visible {
   outline: 2px solid var(--c-turquesa-profundo);
   outline-offset: 3px;
+}
+
+.misa__botones[hidden] {
+  display: none;
+}
+
+/* ── Lunch card (SPEC §5.6) ────────────────────────────────────────── */
+
+.almuerzo__lugar {
+  margin: 0;
+  margin-block: 0.75rem 0.5rem;
+  font-family: var(--f-serif);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.2;
+  color: var(--c-texto);
+}
+
+.almuerzo__texto {
+  margin: 0;
+  font-family: var(--f-sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--c-texto);
 }
 
 @media (min-width: 480px) {
