@@ -7,6 +7,7 @@ import { initMusic } from "./modules/music.ts";
 import { initHero } from "./modules/hero.ts";
 import { initVocacion } from "./modules/vocacion.ts";
 import { initMensaje } from "./modules/mensaje.ts";
+import { initMisa } from "./modules/misa.ts";
 import { initReveal } from "./modules/reveal.ts";
 
 initOpening();
@@ -14,4 +15,5 @@ initMusic();
 initHero();
 initVocacion();
 initMensaje();
+initMisa();
 initReveal();
