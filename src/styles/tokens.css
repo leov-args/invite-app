@@ -1,0 +1,46 @@
+/* Design tokens for the invitation. All color, motion, shape and font values live here. */
+
+:root {
+  /* Surfaces */
+  --c-blanco: #FFFFFF;  /* cards, photo frames, button text, light halos */
+  --c-noche: #0B1219;
+  --c-marfil: #F7F3EC;
+  --c-bruma: #F3F9F9;
+  --c-agua-claro: #E3F3F3;
+  --c-turquesa-suave: #CDECEE;
+
+  /* Turquoise nursing accent */
+  --c-turquesa: #2AA6B0;
+  --c-turquesa-profundo: #167680;
+  --c-turquesa-tinta: #14636B;
+  --c-turquesa-noche: #7FD1D6;
+
+  /* Companions */
+  --c-salvia: #A7C3B8;
+  --c-plata: #A6B2BA;
+  --c-plata-claro: #D5DCE0;
+  --c-luz-calida: #D9B98C;
+  --c-luz-calida-suave: #FFF4DF;
+
+  /* Text */
+  --c-texto: #23323D;
+  --c-texto-2: #5B6B75;
+  --c-texto-noche: #EFE6D8;
+
+  /* Typography */
+  --f-serif: "Cormorant Garamond", Georgia, serif;
+  --f-sans: Montserrat, system-ui, sans-serif;
+
+  /* Shape and space */
+  --radio-tarjeta: 20px;
+  --radio-pildora: 999px;
+  --radio-foto-galeria: 14px;
+  --sombra-suave: 0 18px 40px -18px rgb(20 70 80 / .25);
+  --espacio-seccion: clamp(96px, 14vw, 120px);
+
+  /* Motion */
+  --ease-suave: cubic-bezier(.22,.61,.36,1);
+  --dur-texto: 1400ms;
+  --dur-foto: 1800ms;
+  --dur-escena: 2400ms;
+}
