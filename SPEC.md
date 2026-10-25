@@ -44,7 +44,8 @@ El sitio continúa la estética del video homenaje: elegante, sobria, emotiva y 
 - **Vite + TypeScript sin framework** (HTML semántico, CSS con custom properties y TS mínimo). Sin librerías de UI.
 - Animaciones con CSS y `IntersectionObserver`. Sin GSAP.
 - Sin dependencias en runtime. Solo `vite` y `typescript` como devDependencies.
-- Pruebas de la lógica pura (cuenta regresiva, `.ics`, validación del RSVP) con `node --test` en Node ≥ 22.18 o 24, que ejecuta `.ts` sin compilar: archivos `*.test.ts` junto al módulo. Sin framework de pruebas; el CI no las ejecuta.
+- Pruebas de la lógica pura (cuenta regresiva, `.ics`, validación del RSVP) con `node --test` en Node ≥ 22.18 o 24, que ejecuta `.ts` sin compilar: archivos `*.test.ts` junto al módulo.
+- There is no test framework; CI runs the tests via `npm run check` (Node 24).
 - Despliegue en **GitHub Pages** (RF-03, ver §2.1). Repo: [`leov-args/invite-app`](https://github.com/leov-args/invite-app) (público). URL: `https://leov-args.github.io/invite-app/`.
 
 ```
@@ -77,7 +78,7 @@ El sitio continúa la estética del video homenaje: elegante, sobria, emotiva y 
 
 **Rutas y base del sitio.** Un sitio de proyecto en Pages se sirve bajo `/<repo>/`, no en la raíz. Por eso:
 - En `vite.config.ts` se define `base: process.env.VITE_BASE ?? '/invite-app/'`. Con dominio propio (`CNAME`), `base` pasa a ser `'/'`.
-- **Ninguna ruta empieza por `/`.** En HTML y CSS se usan rutas relativas (`assets/...`). En TS se usa `` `${import.meta.env.BASE_URL}assets/...` `` mediante un helper `asset(path)`.
+- **Ninguna ruta empieza por `/`.** En HTML y CSS se usan rutas relativas (`assets/...`). En TS se usa `` `${import.meta.env.BASE_URL}assets/...` `` mediante un helper `asset(path)`. Exception: references to files in `public/` from `index.html` (the favicon) and font URLs in CSS use a leading `/`, which Vite prefixes with `base`.
 - Las rutas de `content.ts` se escriben sin barra inicial (`"assets/fotos/01-retrato"`) y siempre pasan por `asset()`.
 - Las URL absolutas de `og:image` y `og:url` se construyen con `content.sitio.url` (ver §3), porque WhatsApp no resuelve rutas relativas.
 - **Los metadatos van en el HTML estático**, porque el rastreador de WhatsApp no ejecuta JS. Un plugin en línea de `vite.config.ts` con `transformIndexHtml` importa `src/content.ts` y escribe `og:*`, `<title>` y `description` en el `index.html` compilado. El resto del contenido sí lo pinta TS en tiempo de ejecución.
@@ -87,28 +88,39 @@ El sitio continúa la estética del video homenaje: elegante, sobria, emotiva y 
 ```yaml
 name: Deploy to GitHub Pages
 on:
-  push: { branches: [main] }
+  push:
+    branches: [main]
   workflow_dispatch:
-permissions: { contents: read, pages: write, id-token: write }
-concurrency: { group: pages, cancel-in-progress: true }
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: npm }
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
       - run: npm ci
-      - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
-        with: { path: dist }
+      - run: npm run check
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    environment: { name: github-pages, url: "${{ steps.d.outputs.page_url }}" }
+    environment:
+      name: github-pages
+      url: "${{ steps.d.outputs.page_url }}"
     steps:
       - id: d
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 ```
 
 **Pasos manuales (una vez):**
@@ -130,6 +142,9 @@ Todo texto o dato que pueda cambiar vive aquí. Los `TODO` deben mostrarse **ocu
 export const content = {
   sitio: {
     url: "https://leov-args.github.io/invite-app/",     // URL pública final (para og:image/og:url absolutos)
+    // Used for <title>, description and og:*. WhatsApp crawler does not run JS.
+    titulo: "Misa en memoria de Juana Neyi Trigueros Balcazar",
+    descripcion: "Con cariño y gratitud, te invitamos a acompañarnos. 16 de enero de 2027, 11:00 a. m., Santa Cruz de Flores.",
   },
   persona: {
     nombre: "Juana Neyi",

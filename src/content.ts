@@ -2,6 +2,9 @@ export const content = {
   sitio: {
     // Public final URL, used for absolute og:image/og:url.
     url: "https://leov-args.github.io/invite-app/",
+    // Used for <title>, description and og:*. WhatsApp crawler does not run JS.
+    titulo: "Misa en memoria de Juana Neyi Trigueros Balcazar",
+    descripcion: "Con cariño y gratitud, te invitamos a acompañarnos. 16 de enero de 2027, 11:00 a. m., Santa Cruz de Flores.",
   },
   persona: {
     nombre: "Juana Neyi",

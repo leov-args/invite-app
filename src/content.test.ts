@@ -19,4 +19,9 @@ describe("content.ts", () => {
     assert.ok(content.sitio.url.startsWith("https://"), "site url must use https");
     assert.ok(content.sitio.url.endsWith("/"), "site url must end with /");
   });
+
+  it("site description includes mass date and time texts", () => {
+    assert.ok(content.sitio.descripcion.includes(content.misa.fechaTexto));
+    assert.ok(content.sitio.descripcion.includes(content.misa.horaTexto));
+  });
 });
