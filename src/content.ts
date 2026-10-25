@@ -52,6 +52,12 @@ export const content = {
     // TODO: optional family signature, e.g. "Familia Vargas Trigueros"
     firmaFamilia: "",
   },
+  textos: {
+    apertura: {
+      frase: "Con cariño y gratitud, recordamos a…",
+      boton: "Abrir invitación",
+    },
+  },
   musica: {
     mp3: "assets/audio/piano-homenaje.mp3",
     ogg: "assets/audio/piano-homenaje.ogg",

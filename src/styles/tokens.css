@@ -43,4 +43,5 @@
   --dur-texto: 1400ms;
   --dur-foto: 1800ms;
   --dur-escena: 2400ms;
+  --dur-pulsar: 150ms;  /* press feedback */
 }
