@@ -1,0 +1,61 @@
+/* Baseline layout, ambient background and grain for the invitation page. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  font-family: var(--f-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--c-texto);
+}
+
+button,
+a {
+  touch-action: manipulation;
+}
+
+main {
+  max-inline-size: 480px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+/* Ambient background layer */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 120% 80% at 50% 25%, var(--c-luz-calida-suave) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 60% at 80% 90%, var(--c-blanco) 0%, transparent 40%),
+    linear-gradient(180deg, var(--c-marfil) 0%, var(--c-bruma) 100%);
+}
+
+/* Subtle film grain layer */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
