@@ -139,7 +139,112 @@ main:focus {
   to { opacity: 1; }
 }
 
+/* ── Music button (E2-2) ───────────────────────────────────────────── */
+
+.musica {
+  position: fixed;
+  right: calc(16px + env(safe-area-inset-right));
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  z-index: 50;
+  display: inline-grid;
+  place-items: center;
+  inline-size: 44px;
+  block-size: 44px;
+  padding: 0;
+  border: 1px solid var(--c-turquesa);
+  border-radius: 50%;
+  background-color: color-mix(in srgb, var(--c-blanco) 80%, transparent);
+  color: var(--c-turquesa-profundo);
+  cursor: pointer;
+  box-shadow: var(--sombra-suave);
+  transition:
+    transform var(--dur-pulsar) var(--ease-suave),
+    background-color var(--dur-pulsar) var(--ease-suave);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.musica__icono {
+  grid-area: 1 / 1;
+  inline-size: 20px;
+  block-size: 20px;
+  transition: opacity var(--dur-pulsar) var(--ease-suave);
+}
+
+.musica__icono--barras {
+  opacity: 0;
+}
+
+.musica--sonando .musica__icono--nota {
+  opacity: 0;
+}
+
+.musica--sonando .musica__icono--barras {
+  opacity: 1;
+}
+
+.musica__icono--barras line {
+  transform-origin: bottom;
+  transform-box: fill-box;
+}
+
+.musica--sonando .musica__icono--barras line:nth-child(1) {
+  animation: barra-ondular 1s var(--ease-suave) 0s infinite alternate;
+}
+
+.musica--sonando .musica__icono--barras line:nth-child(2) {
+  animation: barra-ondular 1s var(--ease-suave) 0.2s infinite alternate;
+}
+
+.musica--sonando .musica__icono--barras line:nth-child(3) {
+  animation: barra-ondular 1s var(--ease-suave) 0.4s infinite alternate;
+}
+
+@keyframes barra-ondular {
+  from { transform: scaleY(0.35); }
+  to { transform: scaleY(1); }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .musica:hover {
+    background-color: color-mix(in srgb, var(--c-blanco) 95%, transparent);
+  }
+}
+
+.musica:active {
+  transform: scale(0.97);
+}
+
+.musica:focus-visible {
+  outline: 2px solid var(--c-turquesa-profundo);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .musica {
+    background-color: var(--c-blanco);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .musica--sonando .musica__icono--barras line {
+    animation: none;
+  }
+
+  .musica--sonando .musica__icono--barras line:nth-child(1) {
+    transform: scaleY(0.4);
+  }
+
+  .musica--sonando .musica__icono--barras line:nth-child(2) {
+    transform: scaleY(1);
+  }
+
+  .musica--sonando .musica__icono--barras line:nth-child(3) {
+    transform: scaleY(0.6);
+  }
+
   .apertura__halo {
     animation: fade-in 300ms ease backwards;
   }
