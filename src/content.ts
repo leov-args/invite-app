@@ -33,8 +33,7 @@ export const content = {
   },
   // RF-02 (SPEC §5.9).
   rsvp: {
-    // TODO: URL /exec of the Apps Script (see SPEC §5.9.1). Empty hides the section.
-    endpoint: "",
+    endpoint: "https://script.google.com/macros/s/AKfycbz5xSYVeRnWKK7khNa9yzpv30eb9cGH5h-UTsBX5IIUX3VTKcMmRtYn5anm-6WEzz-XPQ/exec",
     // Optional, e.g. "Por favor confírmanos antes del 10 de enero".
     fechaLimiteTexto: "",
   },
@@ -124,6 +123,26 @@ export const content = {
     almuerzo: {
       comoLlegar: "Cómo llegar",
       confirmar: "Confirmar asistencia",
+    },
+    // RSVP popup (SPEC §5.9).
+    rsvp: {
+      etiqueta: "CONFIRMA TU ASISTENCIA",
+      texto: "Nos acompañará mucho saber que estarás con nosotros.",
+      confirmar: "Confirmar asistencia",
+      titulo: "Confirmar asistencia",
+      cerrar: "Cerrar",
+      nombre: "Nombre y apellido",
+      personas: "¿Cuántas personas asistirán?",
+      personasAyuda: "Incluyéndote a ti",
+      mensaje: "Mensaje para la familia",
+      mensajeOpcional: "(opcional)",
+      enviar: "Enviar confirmación",
+      enviando: "Enviando…",
+      error: "No pudimos enviar tu confirmación. Inténtalo de nuevo.",
+      gracias: "Gracias, {nombre}. Te esperamos con cariño.",
+      errorNombre: "Escribe tu nombre y apellido (de 2 a 80 caracteres).",
+      errorPersonas: "Elige entre 1 y 10 personas.",
+      errorMensaje: "El mensaje puede tener hasta 500 caracteres.",
     },
     // Gallery section (SPEC §5.7).
     galeria: {

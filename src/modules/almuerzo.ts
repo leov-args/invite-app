@@ -1,4 +1,5 @@
 import { content } from "../content.ts";
+import { abrirRsvp } from "./rsvp.ts";
 
 export function initAlmuerzo(): void {
   const section = document.querySelector<HTMLElement>(".almuerzo");
@@ -38,7 +39,7 @@ export function initAlmuerzo(): void {
       buttonText.textContent = content.textos.almuerzo.confirmar;
     }
     rsvpButton.hidden = !hasRsvp;
-    // Click handler is wired in E6-2 when the RSVP popup is implemented.
+    rsvpButton.addEventListener("click", () => abrirRsvp(rsvpButton));
   }
 
   const directionsButton = document.querySelector<HTMLAnchorElement>(".almuerzo__ruta");

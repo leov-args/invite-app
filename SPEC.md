@@ -364,7 +364,7 @@ Si `rsvp.endpoint` está vacío, la sección y los botones "Confirmar asistencia
   - **¿Cuántas personas asistirán?**: selector del 1 al 10, por defecto 1. Ayuda debajo: "Incluyéndote a ti".
   - **Mensaje para la familia** (opcional, máx. 500 caracteres, `textarea` de 3 filas).
   - Honeypot `botcheck`: checkbox oculto fuera de pantalla, con `tabindex="-1"` y `aria-hidden`.
-- Los inputs tienen 48 px de alto, radio 12 px y borde `--c-plata-claro`. Con foco, el borde pasa a `--c-turquesa` con anillo de 3 px de turquesa al 25 %. Las etiquetas son visibles (no solo `placeholder`). Fuente de 16 px para que iOS no haga zoom.
+- Inputs are 48 px tall, 12 px radius, border `--c-texto-2`. On focus, the border becomes `--c-turquesa-profundo` with a 3 px ring of `--c-turquesa` at 25 %. Labels are visible (not just `placeholder`). 16 px font so iOS does not zoom.
 - Botón **"Enviar confirmación"**.
 
 **Comportamiento:**
