@@ -12,6 +12,7 @@ const REVEAL_TEXT_SELECTORS = [
   ".almuerzo__tarjeta",
   ".galeria__titulo",
   ".galeria__subtitulo",
+  ".video__titulo",
 ];
 
 const REVEAL_FOTO_SELECTORS = [

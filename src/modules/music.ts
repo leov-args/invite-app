@@ -3,6 +3,7 @@ import { asset } from "../asset.ts";
 
 const FADE_IN_OPEN = 1.5;
 const FADE_TOGGLE = 0.8;
+const FADE_VIDEO = 0.6;
 const LOOP_FADE_OUT_THRESHOLD = 1.5;
 
 let audio: HTMLAudioElement | null = null;
@@ -160,6 +161,12 @@ function handleEnded(): void {
 
 export function playMusic(): void {
   play(FADE_IN_OPEN);
+}
+
+export function pauseMusicForVideo(): void {
+  pausedByVisibility = false;
+  if (!isPlaying) return;
+  pause(FADE_VIDEO);
 }
 
 export function initMusic(): void {
