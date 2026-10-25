@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "strict": true,
+    "types": ["vite/client"],
+    "skipLibCheck": true,
+    "verbatimModuleSyntax": true,
+    "erasableSyntaxOnly": true
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts"]
+}

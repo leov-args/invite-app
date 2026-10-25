@@ -1,0 +1,24 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  // roadmap-step runs OpenCode headless with --auto (everything not denied is
+  // approved), so planning skills that wait for approval are gated and git
+  // history stays Claude's: OpenCode may not commit, merge, push or move
+  // branches. Ceiling: glob patterns only see the literal command, so forms
+  // like `git -C . commit` are not caught; the brief and `git log main..HEAD`
+  // checks remain the second line of defence.
+  "permissions": [
+    { "action": "skill", "resource": "spec-driven-development", "effect": "deny" },
+    { "action": "skill", "resource": "writing-plans", "effect": "ask" },
+    { "action": "skill", "resource": "planning-and-task-breakdown", "effect": "ask" },
+    { "action": "skill", "resource": "constraint-driven-development", "effect": "ask" },
+
+    { "action": "shell", "resource": "git commit*", "effect": "deny" },
+    { "action": "shell", "resource": "git merge*", "effect": "deny" },
+    { "action": "shell", "resource": "git push*", "effect": "deny" },
+    { "action": "shell", "resource": "git switch*", "effect": "deny" },
+    { "action": "shell", "resource": "git checkout*", "effect": "deny" },
+    { "action": "shell", "resource": "git rebase*", "effect": "deny" },
+    { "action": "shell", "resource": "git reset*", "effect": "deny" }
+  ]
+}
