@@ -16,6 +16,7 @@ import { initGaleria } from "./modules/galeria.ts";
 import { initLightbox } from "./modules/lightbox.ts";
 import { initVideo } from "./modules/video.ts";
 import { initCierre } from "./modules/cierre.ts";
+import { initRsvp } from "./modules/rsvp.ts";
 import { initReveal } from "./modules/reveal.ts";
 
 initOpening();
@@ -32,4 +33,5 @@ initGaleria();
 initLightbox();
 initVideo();
 initCierre();
+initRsvp();
 initReveal();

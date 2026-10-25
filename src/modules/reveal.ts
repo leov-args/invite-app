@@ -10,6 +10,7 @@ const REVEAL_TEXT_SELECTORS = [
   ".misa__tarjeta",
   ".ubicacion__contenido",
   ".almuerzo__tarjeta",
+  ".rsvp__tarjeta",
   ".galeria__titulo",
   ".galeria__subtitulo",
   ".video__titulo",

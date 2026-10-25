@@ -238,6 +238,16 @@
         <video class="video__reproductor" controls preload="none" playsinline width="1080" height="1920"></video>
       </section>
 
+      <section class="rsvp" aria-labelledby="rsvp-etiqueta" hidden>
+        <div class="rsvp__tarjeta">
+          <h2 id="rsvp-etiqueta" class="rsvp__etiqueta"></h2>
+          <img class="misa__separador" src="/assets/decoracion/separador-turquesa.png" width="460" height="40" alt="" aria-hidden="true">
+          <p class="rsvp__texto"></p>
+          <p class="rsvp__fecha-limite" hidden></p>
+          <button type="button" class="misa__boton rsvp__confirmar"><span></span></button>
+        </div>
+      </section>
+
       <section class="cierre">
         <p class="cierre__frase"></p>
         <img class="cierre__cruz" src="/assets/decoracion/cruz-luz.png" width="450" height="450" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -266,6 +276,72 @@
           <source type="image/webp">
           <img draggable="false" alt="">
         </picture>
+      </dialog>
+
+      <dialog class="rsvp-dialogo" aria-labelledby="rsvp-dialogo-titulo">
+        <div class="rsvp-dialogo__tarjeta">
+          <button type="button" class="rsvp-dialogo__cerrar" aria-label="Cerrar">
+            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 6L6 18"></path>
+              <path d="M6 6l12 12"></path>
+            </svg>
+          </button>
+
+          <h2 id="rsvp-dialogo-titulo" class="rsvp-dialogo__titulo"></h2>
+
+          <div class="rsvp-dialogo__contenido">
+            <form class="rsvp-dialogo__form" novalidate>
+              <div class="rsvp-dialogo__campo">
+                <label for="rsvp-nombre"></label>
+                <input id="rsvp-nombre" name="nombre" type="text" autocomplete="name" maxlength="80" required aria-describedby="rsvp-nombre-error">
+                <p id="rsvp-nombre-error" class="rsvp-dialogo__error"></p>
+              </div>
+
+              <div class="rsvp-dialogo__campo">
+                <label for="rsvp-personas"></label>
+                <select id="rsvp-personas" name="personas" aria-describedby="rsvp-personas-ayuda rsvp-personas-error">
+                  <option value="1" selected>1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+                <p id="rsvp-personas-ayuda" class="rsvp-dialogo__ayuda"></p>
+                <p id="rsvp-personas-error" class="rsvp-dialogo__error"></p>
+              </div>
+
+              <div class="rsvp-dialogo__campo">
+                <label for="rsvp-mensaje">
+                  <span class="rsvp-dialogo__mensaje-label"></span>
+                  <span class="rsvp-dialogo__opcional"></span>
+                </label>
+                <textarea id="rsvp-mensaje" name="mensaje" rows="3" maxlength="500" aria-describedby="rsvp-mensaje-error"></textarea>
+                <p id="rsvp-mensaje-error" class="rsvp-dialogo__error"></p>
+              </div>
+
+              <label class="rsvp-dialogo__honeypot">
+                <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" autocomplete="off">
+              </label>
+
+              <button type="submit" class="misa__boton rsvp-dialogo__enviar">
+                <span class="rsvp-dialogo__spinner" aria-hidden="true"></span>
+                <span class="rsvp-dialogo__enviar-texto"></span>
+              </button>
+            </form>
+
+            <div class="rsvp-dialogo__exito">
+              <p class="rsvp-dialogo__gracias" role="status"></p>
+              <button type="button" class="misa__boton rsvp-dialogo__cerrar-exito"><span></span></button>
+            </div>
+          </div>
+
+          <p class="rsvp-dialogo__estado" aria-live="polite"></p>
+        </div>
       </dialog>
 
       <button type="button" class="musica">
