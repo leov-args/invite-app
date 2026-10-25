@@ -139,6 +139,152 @@ main:focus {
   to { opacity: 1; }
 }
 
+/* ── Hero (E3-1) ───────────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.25rem, 4vh, 1.75rem);
+  min-block-size: 100svh;
+  padding-block: clamp(2rem, 8vh, 4rem);
+  text-align: center;
+}
+
+.hero__retrato {
+  position: relative;
+  isolation: isolate;
+  inline-size: clamp(240px, 64vw, 280px);
+  block-size: clamp(240px, 64vw, 280px);
+  border-radius: 50%;
+  border: 3px solid var(--c-turquesa);
+  outline: 1px solid var(--c-plata);
+  outline-offset: 10px;
+  box-shadow: var(--sombra-suave);
+}
+
+.hero__retrato::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in srgb, var(--c-blanco) 85%, transparent) 0%,
+    color-mix(in srgb, var(--c-blanco) 25%, transparent) 55%,
+    transparent 70%
+  );
+}
+
+.hero__retrato picture {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.hero__retrato img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1);
+}
+
+:root:not(:has(.apertura:not(.apertura--abriendo))) .hero__retrato img {
+  animation: hero-zoom 12s var(--ease-suave) both;
+}
+
+@keyframes hero-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.06); }
+}
+
+.hero__etiqueta {
+  margin: 0;
+  margin-block-end: -0.75rem;
+  font-family: var(--f-sans);
+  font-weight: 500;
+  font-size: clamp(13px, 3.5vw, 14px);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--c-turquesa-profundo);
+}
+
+.hero__nombre {
+  margin: 0;
+  font-family: var(--f-serif);
+  font-weight: 500;
+  line-height: 1.08;
+  color: var(--c-texto);
+}
+
+.hero__nombre-linea {
+  display: block;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.hero__nombre-linea:first-child {
+  font-size: clamp(38px, 12.5vw, 52px);
+}
+
+.hero__nombre-linea:last-child {
+  font-size: clamp(30px, 10.5vw, 42px);
+}
+
+.hero__separador {
+  inline-size: 230px;
+  block-size: auto;
+  max-inline-size: 100%;
+}
+
+.hero__scroll {
+  position: absolute;
+  inset-block-end: calc(24px + env(safe-area-inset-bottom));
+  inset-inline: 0;
+  inline-size: 24px;
+  margin-inline: auto;
+  color: var(--c-plata);
+  animation: hero-pulse 2.6s ease-in-out infinite alternate;
+}
+
+.hero__scroll svg {
+  display: block;
+  inline-size: 24px;
+  block-size: 24px;
+}
+
+@keyframes hero-pulse {
+  from {
+    opacity: 0.55;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not(:has(.apertura:not(.apertura--abriendo))) .hero__retrato img {
+    animation: none;
+  }
+
+  .hero__retrato img {
+    transform: scale(1);
+  }
+
+  .hero__scroll {
+    animation: none;
+    opacity: 1;
+  }
+}
+
 /* ── Music button (E2-2) ───────────────────────────────────────────── */
 
 .musica {
