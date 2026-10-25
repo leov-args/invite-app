@@ -34,4 +34,29 @@ describe("content.ts", () => {
       assert.ok(photo.alt.length > 0, "expected every vocacion photo alt to be non-empty");
     }
   });
+
+  it("gallery has exactly the eight configured square photos in SPEC order", () => {
+    const photos = content.galeria;
+    const expectedSrcs = [
+      "assets/fotos/06-celebracion-grupo",
+      "assets/fotos/07-baile",
+      "assets/fotos/08-fiesta-familiar",
+      "assets/fotos/09-terraza",
+      "assets/fotos/04-enfermera-colegas",
+      "assets/fotos/05-hospital-abrazo",
+      "assets/fotos/02-graduacion-diploma",
+      "assets/fotos/03-graduacion-cofia",
+    ];
+
+    assert.equal(photos.length, 8, "gallery must contain exactly 8 photos");
+
+    photos.forEach((photo, index) => {
+      assert.equal(photo.src, expectedSrcs[index], `photo ${index} src must match SPEC order`);
+      assert.ok(photo.src.startsWith("assets/"), `expected ${photo.src} to start with assets/`);
+      assert.ok(!photo.src.startsWith("/"), `expected ${photo.src} not to start with /`);
+      assert.ok(photo.alt.length > 0, `expected photo ${index} alt to be non-empty`);
+      assert.equal(photo.w, photo.h, `photo ${index} must be square`);
+      assert.ok(photo.w > 0, `photo ${index} dimensions must be positive`);
+    });
+  });
 });

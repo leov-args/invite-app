@@ -10,12 +10,15 @@ const REVEAL_TEXT_SELECTORS = [
   ".misa__tarjeta",
   ".ubicacion__contenido",
   ".almuerzo__tarjeta",
+  ".galeria__titulo",
+  ".galeria__subtitulo",
 ];
 
 const REVEAL_FOTO_SELECTORS = [
   ".hero__retrato",
   ".vocacion__par .vocacion__foto",
   ".vocacion__foto--ancha",
+  ".galeria__foto",
 ];
 
 const ALL_REVEAL_SELECTORS = [...REVEAL_TEXT_SELECTORS, ...REVEAL_FOTO_SELECTORS];
