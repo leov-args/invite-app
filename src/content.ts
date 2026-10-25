@@ -114,6 +114,11 @@ export const content = {
     ubicacion: {
       etiqueta: "DÓNDE NOS REUNIREMOS",
       mapaTitulo: "Mapa: lugar de la misa",
+      comoLlegar: "Cómo llegar",
+      waze: "Abrir en Waze",
+      copiar: "Copiar dirección",
+      copiada: "Dirección copiada",
+      copiaError: "No se pudo copiar la dirección",
     },
   },
   musica: {

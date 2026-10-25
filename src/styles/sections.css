@@ -847,6 +847,86 @@ main:focus {
   }
 }
 
+/* ── Location action buttons (SPEC §5.5) ───────────────────────────── */
+
+.ubicacion__botones {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-block-start: 1.25rem;
+}
+
+.ubicacion__botones[hidden] {
+  display: none;
+}
+
+.ubicacion__copiar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--c-turquesa-profundo);
+  font-family: var(--f-sans);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: opacity var(--dur-pulsar) var(--ease-suave);
+}
+
+.ubicacion__copiar[hidden] {
+  display: none;
+}
+
+.ubicacion__copiar:active {
+  opacity: 0.75;
+}
+
+.ubicacion__copiar:focus-visible {
+  outline: 2px solid var(--c-turquesa-profundo);
+  outline-offset: 3px;
+}
+
+.ubicacion__aviso {
+  flex-basis: 100%;
+  margin: 0;
+  font-family: var(--f-sans);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  min-block-size: 1.5em;
+  color: var(--c-turquesa-tinta);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 250ms var(--ease-suave),
+    visibility 250ms var(--ease-suave);
+}
+
+.ubicacion__aviso--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (min-width: 360px) {
+  .ubicacion__botones {
+    flex-direction: row;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ubicacion__aviso {
+    transition: none;
+  }
+}
+
 /* ── Reveal (E3-3) ─────────────────────────────────────────────────── */
 
 .reveal {
