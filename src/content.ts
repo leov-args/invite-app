@@ -96,6 +96,10 @@ export const content = {
     mensaje: {
       texto: "Con amor, familiares y amigos nos reuniremos para honrar su memoria y elevar una oración por su eterno descanso.",
     },
+    // Mass section (SPEC §5.4).
+    misa: {
+      etiqueta: "MISA EN SU MEMORIA",
+    },
   },
   musica: {
     mp3: "assets/audio/piano-homenaje.mp3",
