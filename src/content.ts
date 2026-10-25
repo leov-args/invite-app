@@ -134,6 +134,10 @@ export const content = {
       siguiente: "Foto siguiente",
       dialogo: "Foto ampliada",
     },
+    // Tribute video section (SPEC §5.8).
+    video: {
+      titulo: "UN RECUERDO",
+    },
   },
   // SPEC §5.7 order; paths without leading "/" or extension; family reviews the alts (F10).
   galeria: [
@@ -190,6 +194,10 @@ export const content = {
     mp3: "assets/audio/piano-homenaje.mp3",
     ogg: "assets/audio/piano-homenaje.ogg",
     volumen: 0.55,
+  },
+  video: {
+    mp4: "assets/video/video-homenaje.mp4",
+    poster: "assets/video/video-homenaje-poster.jpg",
   },
 };
 

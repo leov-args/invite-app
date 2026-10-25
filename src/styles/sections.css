@@ -332,7 +332,8 @@ main:focus {
 }
 
 .vocacion__titulo,
-.galeria__titulo {
+.galeria__titulo,
+.video__titulo {
   margin: 0;
   font-family: var(--f-sans);
   font-weight: 500;
@@ -999,6 +1000,27 @@ main:focus {
   aspect-ratio: 1;
   object-fit: cover;
   border-radius: var(--radio-foto-galeria);
+}
+
+/* ── Video (E7-3) ──────────────────────────────────────────────────── */
+
+.video {
+  margin-inline: -20px;
+  padding: var(--espacio-seccion) 20px;
+  text-align: center;
+  background-color: var(--c-marfil);
+}
+
+.video__reproductor {
+  display: block;
+  inline-size: 100%;
+  max-inline-size: 320px;
+  block-size: auto;
+  aspect-ratio: 9 / 16;
+  margin: 24px auto 0;
+  border-radius: var(--radio-foto-galeria);
+  box-shadow: var(--sombra-suave);
+  background-color: var(--c-bruma);
 }
 
 /* ── Lightbox (E7-2) ───────────────────────────────────────────────── */

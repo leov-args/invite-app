@@ -14,6 +14,7 @@ import { initLocation } from "./modules/location.ts";
 import { initAlmuerzo } from "./modules/almuerzo.ts";
 import { initGaleria } from "./modules/galeria.ts";
 import { initLightbox } from "./modules/lightbox.ts";
+import { initVideo } from "./modules/video.ts";
 import { initReveal } from "./modules/reveal.ts";
 
 initOpening();
@@ -28,4 +29,5 @@ initLocation();
 initAlmuerzo();
 initGaleria();
 initLightbox();
+initVideo();
 initReveal();
