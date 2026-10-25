@@ -99,6 +99,12 @@ export const content = {
     // Mass section (SPEC §5.4).
     misa: {
       etiqueta: "MISA EN SU MEMORIA",
+      hoy: "Hoy nos reunimos en su memoria",
+      gracias: "Gracias por acompañarnos",
+      dias: "DÍAS",
+      horas: "HORAS",
+      minutos: "MINUTOS",
+      segundos: "SEGUNDOS",
     },
   },
   musica: {

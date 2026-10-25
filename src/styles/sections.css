@@ -622,6 +622,61 @@ main:focus {
   display: block;
 }
 
+/* ── Countdown (E4-3) ──────────────────────────────────────────────── */
+
+.misa__cuenta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-block-start: 1.5rem;
+  padding-block-start: 1.5rem;
+  border-top: 1px solid var(--c-plata-claro);
+}
+
+.misa__cuenta-celda {
+  text-align: center;
+}
+
+.misa__cuenta-celda[hidden] {
+  display: none;
+}
+
+.misa__cuenta-numero {
+  display: block;
+  font-family: var(--f-serif);
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 1;
+  color: var(--c-texto);
+  font-variant-numeric: tabular-nums;
+}
+
+.misa__cuenta-etiqueta {
+  display: block;
+  margin-block-start: 0.25rem;
+  font-family: var(--f-sans);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-texto-2);
+}
+
+.misa__cuenta-mensaje {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.35;
+  color: var(--c-turquesa-profundo);
+}
+
+.misa__cuenta-mensaje[hidden] {
+  display: none;
+}
+
 /* ── Reveal (E3-3) ─────────────────────────────────────────────────── */
 
 .reveal {
