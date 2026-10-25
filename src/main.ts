@@ -10,6 +10,7 @@ import { initMensaje } from "./modules/mensaje.ts";
 import { initMisa } from "./modules/misa.ts";
 import { initCountdown } from "./modules/countdown.ts";
 import { initCalendar } from "./modules/calendar.ts";
+import { initLocation } from "./modules/location.ts";
 import { initReveal } from "./modules/reveal.ts";
 
 initOpening();
@@ -20,4 +21,5 @@ initMensaje();
 initMisa();
 initCountdown();
 initCalendar();
+initLocation();
 initReveal();
