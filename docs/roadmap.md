@@ -123,7 +123,8 @@ E0-1 y E0-3 pueden hacerse en paralelo con E1. E0-2 necesita E6-1 (el script) y 
   Closing notes: photos are rendered by `src/modules/galeria.ts` into a static `<ul>` and reuse the E3-3 reveal (blur and scale fade, 250 ms stagger per batch, so per row on mobile); not clickable until the E7-2 lightbox. Verified in `vite preview` at 375×812 (8 webp loaded, no horizontal overflow, clean console). Gate approvals were relayed by the orchestrator session. The family reviews the 06–09 alts (F10).
 - [x] ~~**E7-2 Lightbox**: fondo noche al 92 %, swipe, flechas, Esc y ×, y foco gestionado.~~ **Hecho (2026-10-25)**
   Closing notes: native `<dialog>` in `src/modules/lightbox.ts`, spec in `docs/spec-lightbox.md`. Verified in `vite preview` at 375×812 (open, wrap, swipe, Esc, focus return, scroll lock, clean console); swipe on a real phone is checked in E8-3. Gate approvals were given in the step session.
-- [ ] **E7-3 Video homenaje** (§5.8): `preload="none"`, póster, y pausa la música con fade de 600 ms (no se reanuda sola).
+- [x] ~~**E7-3 Video homenaje** (§5.8): `preload="none"`, póster, y pausa la música con fade de 600 ms (no se reanuda sola).~~ **Hecho (2026-10-25)**
+  Closing notes: size S, no spec file (AC table in the brief, 5/5 PASS). `src/modules/video.ts` sets `video.src` and the poster with `asset()` and calls `pauseMusicForVideo()` on `play` (600 ms GainNode fade, clears the visibility resume flag). Verified in `vite preview` at 375×812: 320×569 centered, no mp4 request before play, video plays, music pauses and stays paused after video pause and `visibilitychange`, music button still toggles, clean console. iOS Safari and Chrome Android checks stay in E8-3. Gate approvals were relayed by the orchestrator session.
 - [ ] **E7-4 Cierre** (§5.10): frase, cruz de luz lenta y firma opcional.
 
 ## E8. Pulido y lanzamiento
