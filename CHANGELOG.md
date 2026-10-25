@@ -7,6 +7,7 @@
 - Design tokens (`tokens.css`: SPEC §4.1 palette plus `--c-blanco`, §4.3 shape and spacing, §4.4 motion, font stacks), seven self-hosted `@font-face` rules with `font-display: swap`, `base.css` (480 px column, fixed ambient background and grain, mobile baseline) and `content.ts` with the §3 data and its test; temporary type/palette test page (E1-2).
 - Build-time HTML metadata from `content.ts` (`<title>`, description, absolute `og:*` with 1200×630 image) via an inline Vite plugin and `src/meta.ts`; static `noindex`, `theme-color` and SVG favicon; `.github/workflows/deploy.yml` to GitHub Pages running `npm run check` on Node 24 (E1-3).
 - Opening screen (SPEC §5.0): static night overlay in `index.html` with a warm halo, phrase and "Abrir invitación" button (texts in `content.textos.apertura`), dissolve into light, CSS scroll lock with `inert` main, `sessionStorage` memory with a no-flash inline head script, keyboard focus ring and reduced-motion fades; `--dur-pulsar` press token; `src/modules/opening.ts` and `src/styles/sections.css` (E2-1).
+- `apps-script/Code.gs`, the RSVP receiver for the Google Sheet copied verbatim from SPEC §5.9.1, plus `apps-script/code.test.ts`, which fails `npm run check` if it drifts from the SPEC (E6-1).
 
 ### Changed
 - `theme-color` starts as noche for the opening screen and switches to marfil once opened (SPEC §5.0, §7); the temporary type/palette test page in `main.ts` is gone (E2-1).

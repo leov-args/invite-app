@@ -85,8 +85,10 @@ E0-1 y E0-3 pueden hacerse en paralelo con E1. E0-2 necesita E6-1 (el script) y 
 
 ## E6. Confirmación de asistencia (RF-02)
 
-- [ ] **E6-1 `apps-script/Code.gs`** (§5.9.1, copiar tal cual de la SPEC): validación, honeypot, `safe()` con `= + - @ \t \r` y `waitLock` dentro del `try`. Sin dependencias: se puede hacer en cualquier momento después de E1-1.
-  *Hecho cuando:* el archivo coincide con SPEC §5.9.1. Las pruebas reales se hacen en E0-2.
+- [x] ~~**E6-1 `apps-script/Code.gs`** (§5.9.1, copiar tal cual de la SPEC): validación, honeypot, `safe()` con `= + - @ \t \r` y `waitLock` dentro del `try`. Sin dependencias: se puede hacer en cualquier momento después de E1-1.
+  *Hecho cuando:* el archivo coincide con SPEC §5.9.1. Las pruebas reales se hacen en E0-2.~~ **Hecho (2026-10-25)**
+  Decisions (2026-10-25, gate): tier docs, written by Claude directly (verbatim copy, no new logic); the Spanish comments are kept as in the SPEC so the file matches byte for byte; `apps-script/code.test.ts` compares `Code.gs` with the SPEC block, so `npm run check` fails if one changes without the other.
+  Closing notes: the real Sheet tests (row, `ok:false`, honeypot, `=1+1`, CORS) are still pending in E0-2. The drift test assumes LF line endings.
 - [ ] **E6-2 Popup `<dialog>`** (`rsvp.ts`, §5.9): campos, validación en el cliente con `aria-describedby`, `fetch` con `text/plain`, timeout de 12 s y estados.
   *Hecho cuando:* desde el sitio desplegado se crea una fila; el error conserva los datos; el foco y Esc funcionan; se abre desde §5.6 y desde §5.9.
   *Depende de:* E0-2 (incluida la prueba CORS) y E5-3. `rsvp.test.ts` cubre la validación de nombre, personas y mensaje.
