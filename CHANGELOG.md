@@ -9,6 +9,7 @@
 - Opening screen (SPEC §5.0): static night overlay in `index.html` with a warm halo, phrase and "Abrir invitación" button (texts in `content.textos.apertura`), dissolve into light, CSS scroll lock with `inert` main, `sessionStorage` memory with a no-flash inline head script, keyboard focus ring and reduced-motion fades; `--dur-pulsar` press token; `src/modules/opening.ts` and `src/styles/sections.css` (E2-1).
 - `apps-script/Code.gs`, the RSVP receiver for the Google Sheet copied verbatim from SPEC §5.9.1, plus `apps-script/code.test.ts`, which fails `npm run check` if it drifts from the SPEC (E6-1).
 - Background music (SPEC § "Elemento persistente"): `src/modules/music.ts` with a lazily created `<audio>` → `MediaElementAudioSourceNode` → `GainNode` graph started in the opening gesture, gain fades (1.5 s start and loop seam, 800 ms toggle), `visibilitychange` pause/resume, and a 44 px floating blur button with animated bars, dynamic `aria-label` from `content.textos.musica`, reduced-motion and reduced-transparency variants (E2-2).
+- Hero (SPEC §5.1): static section with a circular portrait (`<picture>` webp/jpg via `asset()`), 3 px turquesa and 1 px plata rings, white halo, 12 s slow zoom that starts on opening, "EN MEMORIA DE" label and two-line name from `content.ts`, turquoise separator and pulsing silver chevron, reduced-motion variant; `src/modules/hero.ts` (E3-1).
 
 ### Changed
 - Viewport meta gains `viewport-fit=cover` for the safe-area offsets; SPEC music button icon uses `--c-turquesa-profundo` for 3:1 contrast (E2-2).

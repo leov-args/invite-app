@@ -62,8 +62,10 @@ E0-1 y E0-3 pueden hacerse en paralelo con E1. E0-2 necesita E6-1 (el script) y 
 
 ## E3. Hero y "Su vocación"
 
-- [ ] **E3-1 Hero** (§5.1): retrato con doble aro y zoom lento, nombre en dos líneas (el elemento más grande), separador y chevron.
-  From the E1-2 design review: the name needs tight leading (~1.05–1.1), not the body's 1.6.
+- [x] ~~**E3-1 Hero** (§5.1): retrato con doble aro y zoom lento, nombre en dos líneas (el elemento más grande), separador y chevron.
+  From the E1-2 design review: the name needs tight leading (~1.05–1.1), not the body's 1.6.~~ **Hecho (2026-10-25)**
+  Decisions (2026-10-25, gate): tier standard, `opencode-go/kimi-k2.7-code`, size S; static `<section class="hero">` skeleton as the first child of `<main>`, texts and portrait URLs set by `src/modules/hero.ts` from `content.persona` and `content.textos.hero` via `asset()`; inner 3 px turquesa ring as a border, outer 1 px plata ring as `outline-offset: 10px`, circular clip on the `<picture>` so the white halo (`::before`) is not clipped and only the image zooms; the 12 s zoom starts when the opening overlay starts dissolving or is gone (CSS `:has()`), never behind it; name lines `clamp()` up to 52 / 42 px with `line-height: 1.08`; chevron decorative (`aria-hidden`, not a link), absolutely positioned at the bottom so the group stays centred in `100svh`; reduced motion removes the zoom and the pulse; verification in the browser (DOM/CSS, no `node --test`).
+  Closing notes: review fixes: the halo was clipped by the frame's `overflow: hidden`; the chevron's auto margin pushed the group to the top; the label now sits closer to the name than to the portrait; empty `src`/`srcset` removed. Verified in `vite preview` at 375×812 and 375×667 (centred, no horizontal overflow, clean console). Without `:has()` support the zoom simply does not run. E3-3 adds the on-scroll reveal.
 - [ ] **E3-2 Su vocación** (§5.2): fondo turquesa suave, estetoscopio, cruz médica, par de fotos de graduación rotadas y las fotos 04 y 05. Exportar `estetoscopio-desenfocado.webp` de ~440 px, que hoy es un PNG de 207 KB (F11). `alt` en español para 02–05, a partir de las fotos (F10).
 - [ ] **E3-3 Reveal on-scroll** (`reveal.ts`, §4.4): fade + 16 px y escalonado; fotos con blur y escala; versión reducida con `prefers-reduced-motion`.
   *Hecho cuando:* E3-1 y E3-2 aparecen con reveal y no hay saltos de layout (las imágenes tienen `width`/`height`).
