@@ -35,3 +35,4 @@ Gate 0 approved by the user on 2026-10-25 (scope, tier, model, AC list).
 | AC-08 | All new UI strings come from `content.textos`; no inline `style`, no hard-coded colors; `npm run check` passes | review + command | PASS | review: strings in `content.textos.galeria`, no inline style, tokens only; `npm run check` 69 pass, build ok |
 
 ## Cierre
+Done 2026-10-25. One fix round (local `asset()` duplicate, `[hidden]` overridden by `display`, lightbox photo not square because the `height` attribute beat `aspect-ratio`, low-contrast arrows over bright photos), all closed and re-checked in the browser. Closing by tapping outside the photo stays out of scope. Real-device swipe is left to E8-3.
