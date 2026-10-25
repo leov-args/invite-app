@@ -35,6 +35,10 @@ describe("content.ts", () => {
     }
   });
 
+  it("closing phrase equals the SPEC text exactly", () => {
+    assert.equal(content.textos.cierre.frase, "Su recuerdo permanece en nuestros corazones.");
+  });
+
   it("gallery has exactly the eight configured square photos in SPEC order", () => {
     const photos = content.galeria;
     const expectedSrcs = [

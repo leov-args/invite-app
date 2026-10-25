@@ -15,6 +15,7 @@ import { initAlmuerzo } from "./modules/almuerzo.ts";
 import { initGaleria } from "./modules/galeria.ts";
 import { initLightbox } from "./modules/lightbox.ts";
 import { initVideo } from "./modules/video.ts";
+import { initCierre } from "./modules/cierre.ts";
 import { initReveal } from "./modules/reveal.ts";
 
 initOpening();
@@ -30,4 +31,5 @@ initAlmuerzo();
 initGaleria();
 initLightbox();
 initVideo();
+initCierre();
 initReveal();
