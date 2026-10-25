@@ -1,5 +1,6 @@
 import { asset } from "../asset.ts";
 import { content } from "../content.ts";
+import { abrirLightbox } from "./lightbox.ts";
 
 export function initGaleria(): void {
   const section = document.querySelector<HTMLElement>(".galeria");
@@ -18,9 +19,14 @@ export function initGaleria(): void {
     return;
   }
 
-  photos.forEach((photo) => {
+  photos.forEach((photo, index) => {
     const item = document.createElement("li");
     item.className = "galeria__foto";
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "galeria__boton";
+    button.setAttribute("aria-label", photo.alt);
 
     const picture = document.createElement("picture");
 
@@ -38,7 +44,10 @@ export function initGaleria(): void {
 
     picture.appendChild(source);
     picture.appendChild(img);
-    item.appendChild(picture);
+    button.appendChild(picture);
+    item.appendChild(button);
     grid.appendChild(item);
+
+    button.addEventListener("click", () => abrirLightbox(index));
   });
 }

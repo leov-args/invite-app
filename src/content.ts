@@ -129,6 +129,10 @@ export const content = {
     galeria: {
       titulo: "MOMENTOS",
       subtitulo: "Su sonrisa, su familia, su vocación.",
+      cerrar: "Cerrar",
+      anterior: "Foto anterior",
+      siguiente: "Foto siguiente",
+      dialogo: "Foto ampliada",
     },
   },
   // SPEC §5.7 order; paths without leading "/" or extension; family reviews the alts (F10).
