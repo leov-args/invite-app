@@ -1001,6 +1001,129 @@ main:focus {
   border-radius: var(--radio-foto-galeria);
 }
 
+/* ── Lightbox (E7-2) ───────────────────────────────────────────────── */
+
+.galeria__boton {
+  display: block;
+  inline-size: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radio-foto-galeria);
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.galeria__boton:focus-visible {
+  outline: 2px solid var(--c-turquesa-profundo);
+  outline-offset: 3px;
+}
+
+:root:has(.lightbox[open]) {
+  overflow: hidden;
+}
+
+.lightbox[open] {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  inline-size: 100%;
+  block-size: 100%;
+  max-inline-size: none;
+  max-block-size: none;
+  margin: 0;
+  border: 0;
+  padding: calc(20px + env(safe-area-inset-top)) calc(20px + env(safe-area-inset-right)) calc(20px + env(safe-area-inset-bottom)) calc(20px + env(safe-area-inset-left));
+  background: color-mix(in srgb, var(--c-noche) 92%, transparent);
+  color: var(--c-texto-noche);
+}
+
+.lightbox::backdrop {
+  background: transparent;
+}
+
+.lightbox__foto img {
+  display: block;
+  inline-size: min(100%, 520px, 80dvh);
+  block-size: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radio-foto-galeria);
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.lightbox__cerrar,
+.lightbox__anterior,
+.lightbox__siguiente {
+  position: absolute;
+  display: inline-grid;
+  place-items: center;
+  inline-size: 44px;
+  block-size: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radio-pildora);
+  background: color-mix(in srgb, var(--c-noche) 72%, transparent);
+  color: var(--c-texto-noche);
+  cursor: pointer;
+  transition: transform var(--dur-pulsar) var(--ease-suave);
+}
+
+.lightbox__anterior[hidden],
+.lightbox__siguiente[hidden] {
+  display: none;
+}
+
+.lightbox__cerrar svg,
+.lightbox__anterior svg,
+.lightbox__siguiente svg {
+  inline-size: 24px;
+  block-size: 24px;
+}
+
+.lightbox__cerrar {
+  top: calc(12px + env(safe-area-inset-top));
+  right: calc(12px + env(safe-area-inset-right));
+}
+
+.lightbox__anterior {
+  top: 50%;
+  left: calc(8px + env(safe-area-inset-left));
+  translate: 0 -50%;
+}
+
+.lightbox__siguiente {
+  top: 50%;
+  right: calc(8px + env(safe-area-inset-right));
+  translate: 0 -50%;
+}
+
+.lightbox__cerrar:active,
+.lightbox__anterior:active,
+.lightbox__siguiente:active {
+  transform: scale(0.97);
+}
+
+.lightbox__cerrar:focus-visible,
+.lightbox__anterior:focus-visible,
+.lightbox__siguiente:focus-visible {
+  outline: 2px solid var(--c-turquesa-noche);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lightbox[open] {
+    animation: lightbox-fade-in 300ms var(--ease-suave);
+  }
+}
+
+@keyframes lightbox-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 /* ── Reveal (E3-3) ─────────────────────────────────────────────────── */
 
 .reveal {

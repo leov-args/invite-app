@@ -13,6 +13,7 @@ import { initCalendar } from "./modules/calendar.ts";
 import { initLocation } from "./modules/location.ts";
 import { initAlmuerzo } from "./modules/almuerzo.ts";
 import { initGaleria } from "./modules/galeria.ts";
+import { initLightbox } from "./modules/lightbox.ts";
 import { initReveal } from "./modules/reveal.ts";
 
 initOpening();
@@ -26,4 +27,5 @@ initCalendar();
 initLocation();
 initAlmuerzo();
 initGaleria();
+initLightbox();
 initReveal();
