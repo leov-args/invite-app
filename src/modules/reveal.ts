@@ -13,6 +13,10 @@ const REVEAL_TEXT_SELECTORS = [
   ".galeria__titulo",
   ".galeria__subtitulo",
   ".video__titulo",
+  ".cierre__frase",
+  ".cierre__cruz",
+  ".cierre__firma",
+  ".cierre__flores",
 ];
 
 const REVEAL_FOTO_SELECTORS = [

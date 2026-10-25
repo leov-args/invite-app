@@ -138,6 +138,10 @@ export const content = {
     video: {
       titulo: "UN RECUERDO",
     },
+    // Closing section (SPEC §5.10).
+    cierre: {
+      frase: "Su recuerdo permanece en nuestros corazones.",
+    },
   },
   // SPEC §5.7 order; paths without leading "/" or extension; family reviews the alts (F10).
   galeria: [

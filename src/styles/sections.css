@@ -1023,6 +1023,66 @@ main:focus {
   background-color: var(--c-bruma);
 }
 
+/* ── Cierre (E7-4, SPEC §5.10) ── */
+
+.cierre {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  margin-inline: -20px;
+  padding: var(--espacio-seccion) 20px;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 35%, var(--c-luz-calida-suave) 0%, var(--c-blanco) 70%);
+}
+
+.cierre__frase {
+  max-inline-size: 22ch;
+  margin: 0 auto;
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(28px, 7vw, 32px);
+  line-height: 1.35;
+  color: var(--c-texto);
+  text-wrap: balance;
+}
+
+.cierre__cruz {
+  display: block;
+  inline-size: 88px;
+  block-size: 88px;
+  margin-inline: auto;
+  margin-block: clamp(1.5rem, 5vh, 2rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cierre__cruz.reveal {
+    transition-duration: var(--dur-escena), var(--dur-escena);
+  }
+}
+
+.cierre__firma {
+  margin: 0;
+  margin-block-start: 1rem;
+  font-family: var(--f-sans);
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--c-texto-2);
+}
+
+.cierre__firma[hidden] {
+  display: none;
+}
+
+.cierre__flores {
+  display: block;
+  inline-size: calc(100% + 40px);
+  max-inline-size: none;
+  block-size: auto;
+  margin-inline: -20px;
+  margin-block-end: calc(-1 * var(--espacio-seccion));
+}
+
 /* ── Lightbox (E7-2) ───────────────────────────────────────────────── */
 
 .galeria__boton {
