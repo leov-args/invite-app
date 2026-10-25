@@ -440,6 +440,7 @@ const json = (o) => ContentService.createTextOutput(JSON.stringify(o))
 
 ### Elemento persistente: botón de música
 - Botón circular flotante de 44 px abajo a la derecha (respetando `safe-area-inset`). Fondo blanco al 80 % con `backdrop-filter: blur(8px)`, borde e icono turquesa. Muestra unas barras animadas suaves mientras suena.
+- The icon uses `--c-turquesa-profundo` (the border stays `--c-turquesa`): plain turquesa is 2.6:1 on white, below the 3:1 required for UI components. Requires `viewport-fit=cover` in the viewport meta for the safe-area offsets (E2-2).
 - Los fades se hacen con Web Audio: `<audio>` → `MediaElementAudioSourceNode` → `GainNode`. **Nunca se anima `audio.volume`**, porque en iOS Safari es de solo lectura; `musica.volumen` es la ganancia máxima. El `AudioContext` se crea en el gesto de "Abrir invitación".
 - Alterna reproducir y pausar con fades de 800 ms. `aria-label` dinámico: "Pausar música" / "Reproducir música".
 - La pista dura 45 s y se reproduce en bucle. Antes de reiniciar se hace un fade-out y un fade-in de 1.5 s para disimular el corte.

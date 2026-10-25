@@ -8,8 +8,10 @@
 - Build-time HTML metadata from `content.ts` (`<title>`, description, absolute `og:*` with 1200×630 image) via an inline Vite plugin and `src/meta.ts`; static `noindex`, `theme-color` and SVG favicon; `.github/workflows/deploy.yml` to GitHub Pages running `npm run check` on Node 24 (E1-3).
 - Opening screen (SPEC §5.0): static night overlay in `index.html` with a warm halo, phrase and "Abrir invitación" button (texts in `content.textos.apertura`), dissolve into light, CSS scroll lock with `inert` main, `sessionStorage` memory with a no-flash inline head script, keyboard focus ring and reduced-motion fades; `--dur-pulsar` press token; `src/modules/opening.ts` and `src/styles/sections.css` (E2-1).
 - `apps-script/Code.gs`, the RSVP receiver for the Google Sheet copied verbatim from SPEC §5.9.1, plus `apps-script/code.test.ts`, which fails `npm run check` if it drifts from the SPEC (E6-1).
+- Background music (SPEC § "Elemento persistente"): `src/modules/music.ts` with a lazily created `<audio>` → `MediaElementAudioSourceNode` → `GainNode` graph started in the opening gesture, gain fades (1.5 s start and loop seam, 800 ms toggle), `visibilitychange` pause/resume, and a 44 px floating blur button with animated bars, dynamic `aria-label` from `content.textos.musica`, reduced-motion and reduced-transparency variants (E2-2).
 
 ### Changed
+- Viewport meta gains `viewport-fit=cover` for the safe-area offsets; SPEC music button icon uses `--c-turquesa-profundo` for 3:1 contrast (E2-2).
 - `theme-color` starts as noche for the opening screen and switches to marfil once opened (SPEC §5.0, §7); the temporary type/palette test page in `main.ts` is gone (E2-1).
 - SPEC §4.1 and §6: corrected contrast notes; `--c-turquesa-tinta` for small text on the "Su vocación" background and `--c-turquesa-profundo` for the focus ring (E1-2).
 - SPEC §2 and §2.1: CI runs the tests via `npm run check`, workflow on Node 24 with current action majors, leading-`/` exception for `public/` files in `index.html`; §3 `sitio` gains `titulo` and `descripcion` (E1-3).
