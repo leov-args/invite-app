@@ -1,0 +1,164 @@
+/* Opening overlay and future section styles. All values come from tokens.css. */
+
+/* ── Opening screen (E2-1) ─────────────────────────────────────────── */
+
+html:has(.apertura) {
+  overflow: hidden;
+}
+
+.abierta .apertura {
+  display: none;
+}
+
+/* Programmatic focus target only: the UA ring would outline the whole page. */
+main:focus {
+  outline: none;
+}
+
+.apertura {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: clamp(1.5rem, 5vh, 2.5rem);
+  min-block-size: 100dvh;
+  padding: clamp(1rem, 5vw, 2rem);
+  background-color: var(--c-noche);
+  color: var(--c-texto-noche);
+  text-align: center;
+  transition:
+    background-color calc(var(--dur-foto) * 2 / 3) var(--ease-suave),
+    opacity calc(var(--dur-foto) * 2 / 3) var(--ease-suave) calc(var(--dur-foto) / 3);
+}
+
+.apertura--abriendo {
+  background-color: var(--c-marfil);
+  opacity: 0;
+}
+
+.apertura__halo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      color-mix(in srgb, var(--c-luz-calida) 28%, transparent) 0%,
+      color-mix(in srgb, var(--c-luz-calida) 10%, transparent) 35%,
+      transparent 65%
+    );
+  animation:
+    halo-encender 3s var(--ease-suave) backwards,
+    halo-respirar 9s ease-in-out 3s infinite alternate;
+  transition: transform var(--dur-foto) var(--ease-suave);
+}
+
+.apertura--abriendo .apertura__halo {
+  transform: scale(1.6);
+}
+
+@keyframes halo-encender {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes halo-respirar {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.92; }
+}
+
+.apertura__frase {
+  max-inline-size: min(100%, 480px);
+  margin: 0;
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(28px, 7vw, 32px);
+  line-height: 1.35;
+  color: var(--c-texto-noche);
+  animation: fade-in var(--dur-texto) var(--ease-suave) 1.2s backwards;
+}
+
+.apertura__boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-block-size: 44px;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--c-turquesa-noche);
+  border-radius: var(--radio-pildora);
+  background: transparent;
+  color: var(--c-texto-noche);
+  font-family: var(--f-sans);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  animation: fade-in var(--dur-texto) var(--ease-suave) 2.4s backwards;
+  transition:
+    transform var(--dur-pulsar) var(--ease-suave),
+    background-color var(--dur-pulsar) var(--ease-suave),
+    border-color var(--dur-pulsar) var(--ease-suave),
+    opacity 0.6s var(--ease-suave);
+}
+
+.apertura__boton svg {
+  flex: none;
+  inline-size: 1em;
+  block-size: 1em;
+}
+
+.apertura__boton:active {
+  transform: scale(0.97);
+  background-color: color-mix(in srgb, var(--c-turquesa-noche) 12%, transparent);
+  border-color: var(--c-turquesa-noche);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .apertura__boton:hover {
+    background-color: color-mix(in srgb, var(--c-turquesa-noche) 8%, transparent);
+  }
+}
+
+.apertura__boton:focus-visible {
+  outline: 2px solid var(--c-turquesa-noche);
+  outline-offset: 3px;
+}
+
+.apertura--abriendo .apertura__frase,
+.apertura--abriendo .apertura__boton {
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-suave);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .apertura__halo {
+    animation: fade-in 300ms ease backwards;
+  }
+
+  .apertura__frase,
+  .apertura__boton {
+    animation: fade-in 300ms ease backwards;
+  }
+
+  .apertura--abriendo {
+    transition: background-color 300ms ease, opacity 300ms ease;
+  }
+
+  .apertura--abriendo .apertura__halo {
+    transform: none;
+  }
+
+  .apertura--abriendo .apertura__frase,
+  .apertura--abriendo .apertura__boton {
+    transition: opacity 300ms ease;
+  }
+}

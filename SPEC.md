@@ -277,6 +277,7 @@ Los textos entre comillas se copian **literalmente**.
 - Botón a 2.4 s: **"Abrir invitación"**. Es una píldora con borde `--c-turquesa-noche`, texto `--c-texto-noche` y una pequeña nota musical opcional.
 - Al pulsar se hacen tres cosas a la vez. (1) Arranca la música, porque los navegadores solo permiten reproducir audio tras un gesto del usuario. (2) El overlay se disuelve en luz: el fondo pasa a marfil y se desvanece en 1.8 s. (3) Se bloquea el scroll hasta que termina la transición.
 - Se recuerda la apertura en `sessionStorage` para no repetirla al recargar. Las lecturas y escrituras van en `try/catch`.
+- `theme-color` switches from `--c-noche` to `--c-marfil` when the opening animation completes (E2-1).
 
 ### 5.1 Hero
 - Fondo marfil → bruma con halo blanco detrás del retrato.
@@ -460,7 +461,7 @@ const json = (o) => ContentService.createTextOutput(JSON.stringify(o))
   - `og:title` = "Misa en memoria de Juana Neyi Trigueros Balcazar"
   - `og:description` = "Con cariño y gratitud, te invitamos a acompañarnos. 16 de enero de 2027, 11:00 a. m., Santa Cruz de Flores."
   - `og:image` = `content.sitio.url + "assets/social/og-image.jpg"` (URL absoluta, 1200×630); `og:url` = `content.sitio.url`
-  - `og:type` = "website" y `theme-color` = `#F7F3EC`
+  - `og:type` = "website" and `theme-color` starts as `--c-noche` (`#0B1219`) for the opening screen and switches to `--c-marfil` (`#F7F3EC`) once it is opened (E2-1)
 - `<meta name="robots" content="noindex">`, porque es un evento familiar privado.
 - Favicon: la cruz médica turquesa en SVG sobre marfil.
 
