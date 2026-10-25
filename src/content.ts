@@ -61,6 +61,10 @@ export const content = {
       pausar: "Pausar música",
       reproducir: "Reproducir música",
     },
+    hero: {
+      etiqueta: "EN MEMORIA DE",
+      retratoAlt: "Juana Neyi sonriendo, con la mano apoyada en la mejilla",
+    },
   },
   musica: {
     mp3: "assets/audio/piano-homenaje.mp3",
