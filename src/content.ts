@@ -92,6 +92,10 @@ export const content = {
         },
       ],
     },
+    // Message section (SPEC §5.3).
+    mensaje: {
+      texto: "Con amor, familiares y amigos nos reuniremos para honrar su memoria y elevar una oración por su eterno descanso.",
+    },
   },
   musica: {
     mp3: "assets/audio/piano-homenaje.mp3",

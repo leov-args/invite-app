@@ -5,6 +5,8 @@ const REVEAL_TEXT_SELECTORS = [
   ".vocacion__cruz",
   ".vocacion__titulo",
   ".vocacion__frase",
+  ".mensaje__texto",
+  ".mensaje__flores",
 ];
 
 const REVEAL_FOTO_SELECTORS = [
