@@ -17,15 +17,16 @@ E0-1 y E0-3 pueden hacerse en paralelo con E1. E0-2 necesita E6-1 (el script) y 
 
 - [ ] **E0-1 Repo y Pages.** El repo público [`leov-args/invite-app`](https://github.com/leov-args/invite-app) ya existe. Falta, en *Settings → Pages → Source*, elegir **GitHub Actions**.
   *Hecho cuando:* el primer push de E1-3 despliega.
-- [ ] **E0-2 Google Sheet + Apps Script** (SPEC §5.9.1). Crear la hoja con las pestañas `Confirmaciones` y `Resumen`, pegar `apps-script/Code.gs` (de E6-1) y publicar como aplicación web. Pegar la URL `/exec` en `content.rsvp.endpoint`.
-  *Hecho cuando* `curl -L -X POST -H 'Content-Type: text/plain' -d '<json>' <url>` cumple todo esto:
+- [x] ~~**E0-2 Google Sheet + Apps Script** (SPEC §5.9.1). Crear la hoja con las pestañas `Confirmaciones` y `Resumen`, pegar `apps-script/Code.gs` (de E6-1) y publicar como aplicación web. Pegar la URL `/exec` en `content.rsvp.endpoint`.
+  *Hecho cuando* `curl -sL -H 'Content-Type: text/plain' -d '<json>' <url>` cumple todo esto:
   - con datos válidos, crea una fila;
   - con datos inválidos, devuelve `ok:false`;
   - con el honeypot relleno, no crea fila;
   - `=1+1` se guarda como texto.
 
   **Prueba CORS (R1):** desde la consola del sitio desplegado en Pages, `fetch(endpoint,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({nombre:'Prueba CORS',personas:1})}).then(r=>r.json())` devuelve `{ok:true}`. Si falla, E6-2 usa `mode:'no-cors'` y trata la respuesta opaca como éxito; anotarlo en el README de la revisión. Después, borrar las filas de prueba.
-  *Depende de:* E6-1, E1-3.
+  *Depende de:* E6-1, E1-3.~~ **Hecho (2026-10-25)**
+  Closing notes: curl tests 4/4 passed (valid → row; invalid → `{"ok":false,"error":"invalid"}`; honeypot `botcheck` → `ok:true`, no row; `=1+1` stored as text). The old `curl -L -X POST` form re-POSTs on the 302 and gets "Página no encontrada"; drop `-X POST`. Both the 302 and the final 200 send `access-control-allow-origin: *`. CORS from the live Pages origin passed (type `cors`, 200, JSON parsed), so E6-2 uses a normal CORS fetch, not `no-cors`. Pending (user): delete the 4 curl test rows in the sheet.
 - [ ] **E0-3 Datos pendientes** (SPEC §11): dirección textual de la iglesia, link de Maps del local comunal, fecha límite para confirmar, firma de la familia y pies de foto.
   *Hecho cuando:* no quedan `TODO` en `content.ts` antes de E8-3.
 
@@ -111,10 +112,11 @@ E0-1 y E0-3 pueden hacerse en paralelo con E1. E0-2 necesita E6-1 (el script) y 
   *Hecho cuando:* el archivo coincide con SPEC §5.9.1. Las pruebas reales se hacen en E0-2.~~ **Hecho (2026-10-25)**
   Decisions (2026-10-25, gate): tier docs, written by Claude directly (verbatim copy, no new logic); the Spanish comments are kept as in the SPEC so the file matches byte for byte; `apps-script/code.test.ts` compares `Code.gs` with the SPEC block, so `npm run check` fails if one changes without the other.
   Closing notes: the real Sheet tests (row, `ok:false`, honeypot, `=1+1`, CORS) are still pending in E0-2. The drift test assumes LF line endings.
-- [ ] **E6-2 Popup `<dialog>`** (`rsvp.ts`, §5.9): campos, validación en el cliente con `aria-describedby`, `fetch` con `text/plain`, timeout de 12 s y estados.
+- [x] ~~**E6-2 Popup `<dialog>`** (`rsvp.ts`, §5.9): campos, validación en el cliente con `aria-describedby`, `fetch` con `text/plain`, timeout de 12 s y estados.
   *Hecho cuando:* desde el sitio desplegado se crea una fila; el error conserva los datos; el foco y Esc funcionan; se abre desde §5.6 y desde §5.9.
   *Depende de:* E0-2 (incluida la prueba CORS) y E5-3. `rsvp.test.ts` cubre la validación de nombre, personas y mensaje.
-  From the E1-2 design review: an input border in `--c-plata-claro` on white is ~1.4:1; control boundaries need 3:1.
+  From the E1-2 design review: an input border in `--c-plata-claro` on white is ~1.4:1; control boundaries need 3:1.~~ **Hecho (2026-10-25)**
+  Closing notes: spec in `docs/spec-rsvp.md`; input border changed to `--c-texto-2` (SPEC §5.9 updated). Verified in `vite preview` with a stubbed `fetch` (no rows created): both buttons open the dialog, Esc/× return focus, validation, sending/error/success states, form reset. Two fix rounds (live region, timeout over the body, success focus blocked by a `visibility` transition). Pending (user): push this merge and send one real confirmation from Pages to check the row (AC-09). Follow-up: `.vocacion__estetoscopio` overflows at 320 px and widens the layout viewport to 347 px (pre-existing, affects the lightbox too).
 - [ ] **E6-3 Persistencia y compartir**: `localStorage` "Ya confirmaste…", "Confirmar otra persona", y Web Share con fallback de copiar enlace.
 
 ## E7. Galería, video y cierre

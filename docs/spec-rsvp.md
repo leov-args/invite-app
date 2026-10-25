@@ -42,3 +42,7 @@ Out of scope (E6-3): `localStorage` "Ya confirmaste…", "Confirmar otra persona
 | AC-08 | Inputs: 48 px, radius 12 px, 16 px font, border `--c-texto-2`, focus border `--c-turquesa-profundo` + 3 px ring; dialog radius 20 px, backdrop noche 60 %; reduced motion = fade only; no horizontal overflow at 320 px | manual (browser, computed style) | PASS | computed: input 48 px, select 48 px, radius 12 px, 16 px font, border rgb(91,107,117) = `--c-texto-2`; card radius 20 px; dialog background `--c-noche` at 0.6; reduced motion keeps an opacity-only fade. At 320 px the dialog adds no overflow; a pre-existing overflow from `.vocacion__estetoscopio` widens the layout viewport to 347 px (follow-up, not E6-2) |
 | AC-09 | A real submission from the deployed Pages site creates a row in `Confirmaciones` | manual (deployed site) | NOT RUN | needs a push of this merge to Pages (user); the live CORS fetch from Pages already returned a parsed JSON response (E0-2) |
 | AC-10 | `npm run check` passes | automated | PASS | `npm run check`: tsc ok, 82 tests pass, vite build ok (JS 8.86 kB gzip) |
+
+
+## Cierre
+Merged 2026-10-25. All ACs PASS except AC-09 (NOT RUN until the user pushes and sends one real confirmation from Pages). Review: 8 findings in round 1, 2 in round 2, all closed. Follow-up outside scope: `.vocacion__estetoscopio` overflow at 320 px.

@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+- RSVP (SPEC §5.9): section after the video and a native `<dialog>` opened from it and from the lunch card, client validation (`validarRsvp`, tested) with `aria-describedby` errors, CORS `text/plain` POST to the Apps Script `/exec` endpoint with a 12 s timeout, sending/error/success states with an `aria-live` region; input border `--c-texto-2` for 3:1 (E6-2).
 - Vite + TypeScript scaffold: `vite.config.ts` with `VITE_BASE` (default `/invite-app/`), `asset()` helper, `public/.nojekyll`, versioned `package-lock.json` and `npm run check`; assets moved to `public/assets/`, `paleta.png` to `docs/` (E1-1).
 - Design tokens (`tokens.css`: SPEC §4.1 palette plus `--c-blanco`, §4.3 shape and spacing, §4.4 motion, font stacks), seven self-hosted `@font-face` rules with `font-display: swap`, `base.css` (480 px column, fixed ambient background and grain, mobile baseline) and `content.ts` with the §3 data and its test; temporary type/palette test page (E1-2).
 - Build-time HTML metadata from `content.ts` (`<title>`, description, absolute `og:*` with 1200×630 image) via an inline Vite plugin and `src/meta.ts`; static `noindex`, `theme-color` and SVG favicon; `.github/workflows/deploy.yml` to GitHub Pages running `npm run check` on Node 24 (E1-3).
