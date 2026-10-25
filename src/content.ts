@@ -65,6 +65,33 @@ export const content = {
       etiqueta: "EN MEMORIA DE",
       retratoAlt: "Juana Neyi sonriendo, con la mano apoyada en la mejilla",
     },
+    // Nursing section (SPEC §5.2).
+    vocacion: {
+      titulo: "SU VOCACIÓN",
+      frase: "Una mujer que dedicó parte de su vida a cuidar y servir a los demás.",
+      fotos: [
+        {
+          src: "assets/fotos/02-graduacion-diploma",
+          alt: "Juana Neyi el día de su graduación de enfermería, con uniforme blanco, cofia y un ramillete de flores en el pecho",
+          pie: "", // TODO: family may add years or places
+        },
+        {
+          src: "assets/fotos/03-graduacion-cofia",
+          alt: "Juana Neyi con cofia y uniforme blanco, sentada junto a sus compañeras en la ceremonia de graduación",
+          pie: "", // TODO: family may add years or places
+        },
+        {
+          src: "assets/fotos/04-enfermera-colegas",
+          alt: "Juana Neyi con uniforme turquesa, abrazada a dos colegas enfermeras frente al hospital",
+          pie: "", // TODO: family may add years or places
+        },
+        {
+          src: "assets/fotos/05-hospital-abrazo",
+          alt: "Juana Neyi abrazando con cariño a una colega en la oficina de enfermería",
+          pie: "", // TODO: family may add years or places
+        },
+      ],
+    },
   },
   musica: {
     mp3: "assets/audio/piano-homenaje.mp3",
