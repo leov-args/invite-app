@@ -120,6 +120,11 @@ export const content = {
       copiada: "Dirección copiada",
       copiaError: "No se pudo copiar la dirección",
     },
+    // Lunch section (SPEC §5.6).
+    almuerzo: {
+      comoLlegar: "Cómo llegar",
+      confirmar: "Confirmar asistencia",
+    },
   },
   musica: {
     mp3: "assets/audio/piano-homenaje.mp3",

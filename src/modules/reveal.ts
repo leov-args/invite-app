@@ -9,6 +9,7 @@ const REVEAL_TEXT_SELECTORS = [
   ".mensaje__flores",
   ".misa__tarjeta",
   ".ubicacion__contenido",
+  ".almuerzo__tarjeta",
 ];
 
 const REVEAL_FOTO_SELECTORS = [
