@@ -8,6 +8,7 @@ import { initHero } from "./modules/hero.ts";
 import { initVocacion } from "./modules/vocacion.ts";
 import { initMensaje } from "./modules/mensaje.ts";
 import { initMisa } from "./modules/misa.ts";
+import { initCountdown } from "./modules/countdown.ts";
 import { initReveal } from "./modules/reveal.ts";
 
 initOpening();
@@ -16,4 +17,5 @@ initHero();
 initVocacion();
 initMensaje();
 initMisa();
+initCountdown();
 initReveal();
