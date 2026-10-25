@@ -182,6 +182,7 @@ La paleta es la del video, con el **turquesa de enfermería** como color de acen
 ```css
 :root {
   /* superficies */
+  --c-blanco:           #FFFFFF;  /* cards, photo frames, button text, light halos (added in E1-2) */
   --c-noche:            #0B1219;  /* solo pantalla de apertura */
   --c-marfil:           #F7F3EC;  /* fondo cálido (hero, mensaje, cierre) */
   --c-bruma:            #F3F9F9;  /* fondo frío claro */
@@ -190,8 +191,8 @@ La paleta es la del video, con el **turquesa de enfermería** como color de acen
 
   /* turquesa de enfermería (acento) */
   --c-turquesa:         #2AA6B0;  /* decorativo: aros, iconos, separadores, bordes, texto ≥ 24px */
-  --c-turquesa-profundo:#167680;  /* botones (texto blanco 5.3:1), enlaces, etiquetas pequeñas */
-  --c-turquesa-tinta:   #14636B;  /* texto pequeño en turquesa sobre fondos claros (6.5:1) */
+  --c-turquesa-profundo:#167680;  /* buttons (white text 5.3:1), links, small labels on marfil/bruma (4.8–5.0:1), focus ring */
+  --c-turquesa-tinta:   #14636B;  /* small turquoise text on light backgrounds (6.3:1 on marfil, 5.6:1 on turquesa-suave) */
   --c-turquesa-noche:   #7FD1D6;  /* acento sobre --c-noche (10.8:1) */
 
   /* acompañantes */
@@ -213,6 +214,7 @@ La paleta es la del video, con el **turquesa de enfermería** como color de acen
 - La sección "Su vocación" (§5.2) usa un fondo `--c-turquesa-suave` → `--c-agua-claro`. Es la única sección con fondo turquesa.
 - No se usa turquesa saturado en áreas grandes ni como color de texto corrido. No hay rojo en ninguna parte (evitar la estética de "cruz roja").
 - `--c-turquesa` (#2AA6B0) **no** cumple AA para texto pequeño sobre blanco (2.9:1). Para texto < 24 px usar `--c-turquesa-profundo` o `--c-turquesa-tinta`.
+- On the "Su vocación" background (`--c-turquesa-suave` → `--c-agua-claro`), labels and secondary text use `--c-turquesa-tinta`: `--c-turquesa-profundo` (4.3:1) and `--c-texto-2` (4.4:1) fail AA there for small text (E1-2 design review).
 
 **Fondos:** son gradientes suaves, no colores planos. Llevan halos radiales de luz (`--c-luz-calida-suave` o blanco) y un grano muy sutil (ruido SVG al 3–4 % de opacidad) para dar textura cinematográfica.
 
@@ -432,7 +434,7 @@ const json = (o) => ContentService.createTextOutput(JSON.stringify(o))
 ## 6. Accesibilidad
 - Contraste AA en todo el texto (ver las reglas del turquesa en §4.1).
 - Las fotos llevan `alt` descriptivos en español, p. ej. "Juana Neyi el día de su graduación como enfermera, con cofia y uniforme blanco". Las decoraciones llevan `alt=""` y `aria-hidden`.
-- Se puede navegar con teclado: apertura, botones y lightbox, con un foco visible en anillo turquesa de 2 px.
+- Keyboard navigation works for the opening screen, buttons and lightbox, with a visible 2 px focus ring in `--c-turquesa-profundo` (`--c-turquesa-noche` on `--c-noche`). `--c-turquesa` is not used for focus: 2.6:1 on marfil, below the 3:1 required for focus indicators (E1-2 design review).
 - La música nunca suena sin una acción del usuario y siempre se puede detener.
 - Funciona con `prefers-reduced-motion` y con zoom de texto al 200 % sin solapamientos.
 

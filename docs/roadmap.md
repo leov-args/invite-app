@@ -36,8 +36,9 @@ E0-1 y E0-3 pueden hacerse en paralelo con E1. E0-2 necesita E6-1 (el script) y 
   *Hecho cuando:* `npm run build` genera `dist/` sin `paleta.png`, `npm run dev` sirve una página vacía y `git ls-files assets` no devuelve nada.~~ **Hecho (2026-10-25)**
   Decisions: `vite.config.ts` is not type-checked (`include: ["src"]`; `process.env` would need `@types/node`); `*.test.ts` are excluded from `tsc` for the same reason (`node:test` types) and run only under `node --test`; `verbatimModuleSyntax` + `erasableSyntaxOnly` keep `src` loadable by Node type stripping; `npm run check` = `tsc && node --test && vite build`; `asset()` has no test (`import.meta.env` does not exist under `node --test`).
   Follow-ups for E1-3: replace the placeholder `<title>Invite App</title>` in `index.html` instead of injecting a second one; consider Node 24 in `deploy.yml` (Node 20 is EOL since 2026-04; Vite 8 still accepts `^20.19`).
-- [ ] **E1-2 Tokens, fuentes y `content.ts`.** `tokens.css` (§4.1, §4.4), `fonts.css` con `font-display: swap`, `base.css` (columna de 480 px, fondo de ambiente, grano), y `content.ts` con los datos ya confirmados (§3).
+- [~] **E1-2 Tokens, fuentes y `content.ts`.** `tokens.css` (§4.1, §4.4), `fonts.css` con `font-display: swap`, `base.css` (columna de 480 px, fondo de ambiente, grano), y `content.ts` con los datos ya confirmados (§3).
   *Hecho cuando:* una página de prueba muestra Cormorant y Montserrat autoalojadas y los colores de la paleta.
+  Decisions (2026-10-25, design review): `tokens.css` also carries §4.3 (radii, tinted shadow, section spacing) and the font-family stacks; `base.css` paints the ambient background on a `position: fixed` pseudo-element (iOS ignores `background-attachment: fixed`), the grain is an SVG data URI changed by `opacity` only (no blend modes or live filters), plus the mobile baseline (tap highlight, `text-size-adjust`, `touch-action: manipulation`, `color-scheme: light`); running text is Montserrat 400 (300 only for large data lines). Font URLs in CSS are `/assets/fonts/...` so Vite prefixes `base` (exception to §2.1: a relative URL would resolve against `dist/assets/`). `content.ts` holds the §3 data only; `textos` and `galeria` are added by the steps that render them.
 - [ ] **E1-3 Metadatos y workflow.** Plugin en línea `transformIndexHtml` en `vite.config.ts` que importa `src/content.ts` y escribe `<title>`, `description` y `og:*` absolutos en el HTML compilado (FD1: el rastreador de WhatsApp no ejecuta JS). Además `noindex`, favicon SVG, `theme-color` y `.github/workflows/deploy.yml`.
   *Verificar:* `grep 'og:image' dist/index.html` muestra la URL absoluta.
   *Hecho cuando:* el push a `main` despliega, sin 404 en la consola bajo `/invite-app/`, y la vista previa en WhatsApp muestra `og-image.jpg`.
@@ -47,15 +48,19 @@ E0-1 y E0-3 pueden hacerse en paralelo con E1. E0-2 necesita E6-1 (el script) y 
 
 - [ ] **E2-1 Pantalla de apertura** (§5.0): overlay noche, halo, frase, botón "Abrir invitación", disolución en luz, bloqueo de scroll y `sessionStorage`.
   *Hecho cuando:* al recargar no se repite, y el teclado y `prefers-reduced-motion` funcionan.
+  From the E1-2 design review: `theme-color` is marfil while the opening screen is noche (status bar mismatch); add a short press-feedback token (~150 ms) with the first button.
 - [ ] **E2-2 Música + botón flotante** (§ "Elemento persistente"): fades con Web Audio `GainNode` (FD2: nunca animar `audio.volume`, que es de solo lectura en iOS) y `AudioContext` creado en el gesto de apertura. Bucle con crossfade de 1.5 s, `visibilitychange`, `aria-label` dinámico y precarga solo tras abrir.
   *Hecho cuando:* nunca suena antes del gesto y se pausa y reanuda bien en iOS Safari y en Chrome Android.
+  From the E1-2 design review: `env(safe-area-inset-*)` needs `viewport-fit=cover` in the viewport meta; the blurred button needs a `prefers-reduced-transparency` variant.
 
 ## E3. Hero y "Su vocación"
 
 - [ ] **E3-1 Hero** (§5.1): retrato con doble aro y zoom lento, nombre en dos líneas (el elemento más grande), separador y chevron.
+  From the E1-2 design review: the name needs tight leading (~1.05–1.1), not the body's 1.6.
 - [ ] **E3-2 Su vocación** (§5.2): fondo turquesa suave, estetoscopio, cruz médica, par de fotos de graduación rotadas y las fotos 04 y 05. Exportar `estetoscopio-desenfocado.webp` de ~440 px, que hoy es un PNG de 207 KB (F11). `alt` en español para 02–05, a partir de las fotos (F10).
 - [ ] **E3-3 Reveal on-scroll** (`reveal.ts`, §4.4): fade + 16 px y escalonado; fotos con blur y escala; versión reducida con `prefers-reduced-motion`.
   *Hecho cuando:* E3-1 y E3-2 aparecen con reveal y no hay saltos de layout (las imágenes tienen `width`/`height`).
+  From the E1-2 design review: with 1400 ms reveals and 200–300 ms stagger, a block of four takes ~2.3 s; trigger before the element enters the viewport so text is never revealed after the reader has passed it.
 
 ## E4. Mensaje, misa y cuenta regresiva
 
@@ -80,6 +85,7 @@ E0-1 y E0-3 pueden hacerse en paralelo con E1. E0-2 necesita E6-1 (el script) y 
 - [ ] **E6-2 Popup `<dialog>`** (`rsvp.ts`, §5.9): campos, validación en el cliente con `aria-describedby`, `fetch` con `text/plain`, timeout de 12 s y estados.
   *Hecho cuando:* desde el sitio desplegado se crea una fila; el error conserva los datos; el foco y Esc funcionan; se abre desde §5.6 y desde §5.9.
   *Depende de:* E0-2 (incluida la prueba CORS) y E5-3. `rsvp.test.ts` cubre la validación de nombre, personas y mensaje.
+  From the E1-2 design review: an input border in `--c-plata-claro` on white is ~1.4:1; control boundaries need 3:1.
 - [ ] **E6-3 Persistencia y compartir**: `localStorage` "Ya confirmaste…", "Confirmar otra persona", y Web Share con fallback de copiar enlace.
 
 ## E7. Galería, video y cierre
