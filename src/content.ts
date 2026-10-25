@@ -57,6 +57,10 @@ export const content = {
       frase: "Con cariño y gratitud, recordamos a…",
       boton: "Abrir invitación",
     },
+    musica: {
+      pausar: "Pausar música",
+      reproducir: "Reproducir música",
+    },
   },
   musica: {
     mp3: "assets/audio/piano-homenaje.mp3",

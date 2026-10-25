@@ -1,4 +1,5 @@
 import { content } from "../content.ts";
+import { playMusic } from "./music.ts";
 
 const STORAGE_KEY = "apertura-vista";
 
@@ -47,6 +48,7 @@ export function initOpening(): void {
   button.addEventListener("click", () => {
     if (opening) return;
     opening = true;
+    playMusic();
     overlay.classList.add("apertura--abriendo");
 
     const animations = overlay.getAnimations();
