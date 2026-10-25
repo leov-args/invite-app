@@ -677,6 +677,96 @@ main:focus {
   display: none;
 }
 
+/* ── Calendar buttons (E4-4) ───────────────────────────────────────── */
+
+.misa__botones {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-block-start: 1.75rem;
+}
+
+.misa__boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-block-size: 44px;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--c-turquesa-profundo);
+  border-radius: var(--radio-pildora);
+  background-color: var(--c-turquesa-profundo);
+  color: var(--c-blanco);
+  font-family: var(--f-sans);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform var(--dur-pulsar) var(--ease-suave),
+    background-color var(--dur-pulsar) var(--ease-suave),
+    border-color var(--dur-pulsar) var(--ease-suave),
+    color var(--dur-pulsar) var(--ease-suave);
+}
+
+.misa__boton svg {
+  flex: none;
+  inline-size: 1em;
+  block-size: 1em;
+}
+
+.misa__boton:active {
+  transform: scale(0.97);
+}
+
+.misa__boton--contorno {
+  background-color: transparent;
+  color: var(--c-turquesa-profundo);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .misa__boton:hover {
+    background-color: var(--c-turquesa-tinta);
+    border-color: var(--c-turquesa-tinta);
+  }
+
+  .misa__boton--contorno:hover {
+    background-color: color-mix(in srgb, var(--c-turquesa-profundo) 8%, transparent);
+  }
+}
+
+.misa__boton--contorno:active {
+  background-color: color-mix(in srgb, var(--c-turquesa-profundo) 12%, transparent);
+}
+
+.misa__boton:focus-visible {
+  outline: 2px solid var(--c-turquesa-profundo);
+  outline-offset: 3px;
+}
+
+@media (min-width: 480px) {
+  .misa__botones {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .misa__boton {
+    transition:
+      background-color var(--dur-pulsar) var(--ease-suave),
+      border-color var(--dur-pulsar) var(--ease-suave),
+      color var(--dur-pulsar) var(--ease-suave);
+  }
+
+  .misa__boton:active {
+    transform: none;
+  }
+}
+
 /* ── Reveal (E3-3) ─────────────────────────────────────────────────── */
 
 .reveal {

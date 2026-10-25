@@ -105,6 +105,9 @@ export const content = {
       horas: "HORAS",
       minutos: "MINUTOS",
       segundos: "SEGUNDOS",
+      calendario: "Agregar al calendario",
+      googleCalendar: "Google Calendar",
+      calendarioTitulo: "Misa en memoria de Juana Neyi Trigueros Balcazar",
     },
   },
   musica: {
