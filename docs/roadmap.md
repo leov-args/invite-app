@@ -119,7 +119,8 @@ E0-1 y E0-3 pueden hacerse en paralelo con E1. E0-2 necesita E6-1 (el script) y 
 
 ## E7. Galería, video y cierre
 
-- [ ] **E7-1 Galería** (§5.7): grilla de 2 columnas en el orden de la spec y fade escalonado. Forma de cada elemento de `galeria`: `{ src, alt, w, h }`. Escribir el `alt` en español de 06–09 a partir de las fotos; la familia lo revisa (F10).
+- [x] ~~**E7-1 Galería** (§5.7): grilla de 2 columnas en el orden de la spec y fade escalonado. Forma de cada elemento de `galeria`: `{ src, alt, w, h }`. Escribir el `alt` en español de 06–09 a partir de las fotos; la familia lo revisa (F10).~~ **Hecho (2026-10-25)**
+  Closing notes: photos are rendered by `src/modules/galeria.ts` into a static `<ul>` and reuse the E3-3 reveal (blur and scale fade, 250 ms stagger per batch, so per row on mobile); not clickable until the E7-2 lightbox. Verified in `vite preview` at 375×812 (8 webp loaded, no horizontal overflow, clean console). Gate approvals were relayed by the orchestrator session. The family reviews the 06–09 alts (F10).
 - [ ] **E7-2 Lightbox**: fondo noche al 92 %, swipe, flechas, Esc y ×, y foco gestionado.
 - [ ] **E7-3 Video homenaje** (§5.8): `preload="none"`, póster, y pausa la música con fade de 600 ms (no se reanuda sola).
 - [ ] **E7-4 Cierre** (§5.10): frase, cruz de luz lenta y firma opcional.
