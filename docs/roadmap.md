@@ -15,7 +15,7 @@ Estado: `[ ]` pendiente · `[~]` en curso · `[x]` hecho
 
 E0-1 y E0-3 pueden hacerse en paralelo con E1. E0-2 necesita E6-1 (el script) y E1-3 (el sitio desplegado, para la prueba CORS). E6-2 depende de E0-2.
 
-- [ ] **E0-1 Repo y Pages.** Crear el repo público `misa-juana-neyi` y, en *Settings → Pages → Source*, elegir **GitHub Actions**.
+- [ ] **E0-1 Repo y Pages.** El repo público [`leov-args/invite-app`](https://github.com/leov-args/invite-app) ya existe. Falta, en *Settings → Pages → Source*, elegir **GitHub Actions**.
   *Hecho cuando:* el primer push de E1-3 despliega.
 - [ ] **E0-2 Google Sheet + Apps Script** (SPEC §5.9.1). Crear la hoja con las pestañas `Confirmaciones` y `Resumen`, pegar `apps-script/Code.gs` (de E6-1) y publicar como aplicación web. Pegar la URL `/exec` en `content.rsvp.endpoint`.
   *Hecho cuando* `curl -L -X POST -H 'Content-Type: text/plain' -d '<json>' <url>` cumple todo esto:
@@ -38,7 +38,7 @@ E0-1 y E0-3 pueden hacerse en paralelo con E1. E0-2 necesita E6-1 (el script) y 
   *Hecho cuando:* una página de prueba muestra Cormorant y Montserrat autoalojadas y los colores de la paleta.
 - [ ] **E1-3 Metadatos y workflow.** Plugin en línea `transformIndexHtml` en `vite.config.ts` que importa `src/content.ts` y escribe `<title>`, `description` y `og:*` absolutos en el HTML compilado (FD1: el rastreador de WhatsApp no ejecuta JS). Además `noindex`, favicon SVG, `theme-color` y `.github/workflows/deploy.yml`.
   *Verificar:* `grep 'og:image' dist/index.html` muestra la URL absoluta.
-  *Hecho cuando:* el push a `main` despliega, sin 404 en la consola bajo `/misa-juana-neyi/`, y la vista previa en WhatsApp muestra `og-image.jpg`.
+  *Hecho cuando:* el push a `main` despliega, sin 404 en la consola bajo `/invite-app/`, y la vista previa en WhatsApp muestra `og-image.jpg`.
   *Depende de:* E0-1.
 
 ## E2. Apertura y música

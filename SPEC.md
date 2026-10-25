@@ -45,7 +45,7 @@ El sitio continúa la estética del video homenaje: elegante, sobria, emotiva y 
 - Animaciones con CSS y `IntersectionObserver`. Sin GSAP.
 - Sin dependencias en runtime. Solo `vite` y `typescript` como devDependencies.
 - Pruebas de la lógica pura (cuenta regresiva, `.ics`, validación del RSVP) con `node --test` en Node ≥ 22.18 o 24, que ejecuta `.ts` sin compilar: archivos `*.test.ts` junto al módulo. Sin framework de pruebas; el CI no las ejecuta.
-- Despliegue en **GitHub Pages** (RF-03, ver §2.1). Nombre de repo sugerido: `misa-juana-neyi`, que da la URL `https://<usuario>.github.io/misa-juana-neyi/`.
+- Despliegue en **GitHub Pages** (RF-03, ver §2.1). Repo: [`leov-args/invite-app`](https://github.com/leov-args/invite-app) (público). URL: `https://leov-args.github.io/invite-app/`.
 
 ```
 /
@@ -76,7 +76,7 @@ El sitio continúa la estética del video homenaje: elegante, sobria, emotiva y 
 ### 2.1 Despliegue en GitHub Pages (RF-03)
 
 **Rutas y base del sitio.** Un sitio de proyecto en Pages se sirve bajo `/<repo>/`, no en la raíz. Por eso:
-- En `vite.config.ts` se define `base: process.env.VITE_BASE ?? '/misa-juana-neyi/'`. Con dominio propio (`CNAME`), `base` pasa a ser `'/'`.
+- En `vite.config.ts` se define `base: process.env.VITE_BASE ?? '/invite-app/'`. Con dominio propio (`CNAME`), `base` pasa a ser `'/'`.
 - **Ninguna ruta empieza por `/`.** En HTML y CSS se usan rutas relativas (`assets/...`). En TS se usa `` `${import.meta.env.BASE_URL}assets/...` `` mediante un helper `asset(path)`.
 - Las rutas de `content.ts` se escriben sin barra inicial (`"assets/fotos/01-retrato"`) y siempre pasan por `asset()`.
 - Las URL absolutas de `og:image` y `og:url` se construyen con `content.sitio.url` (ver §3), porque WhatsApp no resuelve rutas relativas.
@@ -129,7 +129,7 @@ Todo texto o dato que pueda cambiar vive aquí. Los `TODO` deben mostrarse **ocu
 ```ts
 export const content = {
   sitio: {
-    url: "https://<usuario>.github.io/misa-juana-neyi/", // TODO URL pública final (para og:image/og:url absolutos)
+    url: "https://leov-args.github.io/invite-app/",     // URL pública final (para og:image/og:url absolutos)
   },
   persona: {
     nombre: "Juana Neyi",
@@ -485,17 +485,17 @@ Las fotos ya vienen recortadas en cuadrado. **No recortar con `object-fit` de fo
 - [ ] **RF-02:** la validación impide enviar sin nombre o fuera de rango, tanto en el cliente como en el script. El honeypot no genera filas y un nombre como `=1+1` se guarda como texto.
 - [ ] **RF-02:** los estados de enviando, éxito y error funcionan. El error conserva los datos escritos y el popup se maneja con teclado (Esc, foco atrapado y retorno del foco).
 - [ ] **RF-02:** el envío funciona en iOS Safari, en Chrome Android y en el navegador interno de WhatsApp.
-- [ ] **RF-03:** cada push a `main` despliega con GitHub Actions. En `https://<usuario>.github.io/misa-juana-neyi/` cargan todos los recursos (sin 404 en la consola) y `og:image` apunta a una URL absoluta válida. El repo no contiene credenciales.
+- [ ] **RF-03:** cada push a `main` despliega con GitHub Actions. En `https://leov-args.github.io/invite-app/` cargan todos los recursos (sin 404 en la consola) y `og:image` apunta a una URL absoluta válida. El repo no contiene credenciales.
 - [ ] El sitio respeta `prefers-reduced-motion` y alcanza Lighthouse móvil ≥ 90 / ≥ 90.
 
 ## 10. Plan de trabajo
 El desglose en épicas y tareas, con dependencias y criterios de cada una, está en [`docs/roadmap.md`](docs/roadmap.md).
 
 ## 11. Preguntas abiertas
-Resueltas: la fecha (16/01/2027), la hora (11:00), la iglesia y su ubicación, que habrá almuerzo después y el canal de confirmación (Google Sheets).
+Resueltas: el repo (`leov-args/invite-app`), la fecha (16/01/2027), la hora (11:00), la iglesia y su ubicación, que habrá almuerzo después y el canal de confirmación (Google Sheets).
 
 1. Dirección textual exacta de la iglesia (calle o plaza) para `lugarDireccion`.
 2. Link de Google Maps del Local Comunal de Santa Cruz de Flores (opcional) y validar el texto de la tarjeta del almuerzo.
 3. ¿Hay fecha límite para confirmar? (`rsvp.fechaLimiteTexto`).
 4. Firma de la familia y pies de foto (años o lugares) en las fotos de su vocación.
-5. Nombre del repo o usuario de GitHub, y si se usará dominio propio (RF-03).
+5. ¿Se usará dominio propio? Por defecto, no (RF-03). Repo ya definido: `leov-args/invite-app`.
