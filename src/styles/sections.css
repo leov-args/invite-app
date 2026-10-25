@@ -412,6 +412,98 @@ main:focus {
   color: var(--c-turquesa-tinta);
 }
 
+/* ── Mensaje (E4-1) ────────────────────────────────────────────────── */
+
+.mensaje {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  margin-inline: -20px;
+  padding: var(--espacio-seccion) 20px;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    var(--c-marfil) 0%,
+    color-mix(in srgb, var(--c-luz-calida-suave) 50%, var(--c-marfil)) 100%
+  );
+}
+
+.mensaje::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.21;
+  background:
+    linear-gradient(
+      118deg,
+      transparent 5%,
+      var(--c-luz-calida) 14%,
+      transparent 26%
+    ) no-repeat,
+    linear-gradient(
+      124deg,
+      transparent 12%,
+      var(--c-blanco) 20%,
+      transparent 32%
+    ) no-repeat,
+    linear-gradient(
+      112deg,
+      transparent 18%,
+      var(--c-luz-calida-suave) 26%,
+      transparent 38%
+    ) no-repeat,
+    linear-gradient(
+      128deg,
+      transparent 0%,
+      var(--c-luz-calida) 10%,
+      transparent 22%
+    ) no-repeat;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 85%);
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 85%);
+  animation: mensaje-respirar 9s ease-in-out infinite alternate;
+}
+
+@keyframes mensaje-respirar {
+  0% {
+    opacity: 0.17;
+  }
+
+  100% {
+    opacity: 0.25;
+  }
+}
+
+.mensaje__texto {
+  max-inline-size: 22ch;
+  margin: 0 auto;
+  margin-block-end: clamp(2.5rem, 8vh, 4rem);
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(28px, 7vw, 32px);
+  line-height: 1.35;
+  color: var(--c-texto);
+  text-wrap: balance;
+}
+
+.mensaje__flores {
+  display: block;
+  inline-size: calc(100% + 40px);
+  max-inline-size: none;
+  block-size: auto;
+  margin-inline: -20px;
+  margin-block-end: calc(-1 * var(--espacio-seccion));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mensaje::before {
+    animation: none;
+    opacity: 0.21;
+  }
+}
+
 /* ── Reveal (E3-3) ─────────────────────────────────────────────────── */
 
 .reveal {

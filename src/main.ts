@@ -6,10 +6,12 @@ import { initOpening } from "./modules/opening.ts";
 import { initMusic } from "./modules/music.ts";
 import { initHero } from "./modules/hero.ts";
 import { initVocacion } from "./modules/vocacion.ts";
+import { initMensaje } from "./modules/mensaje.ts";
 import { initReveal } from "./modules/reveal.ts";
 
 initOpening();
 initMusic();
 initHero();
 initVocacion();
+initMensaje();
 initReveal();
