@@ -8,6 +8,8 @@
   --c-bruma: #F3F9F9;
   --c-agua-claro: #E3F3F3;
   --c-turquesa-suave: #CDECEE;
+  --c-crema: color-mix(in srgb, var(--c-luz-calida-suave) 50%, var(--c-marfil));
+  --c-bruma-clara: color-mix(in srgb, var(--c-blanco) 60%, var(--c-bruma));
 
   /* Turquoise nursing accent */
   --c-turquesa: #2AA6B0;
@@ -44,4 +46,7 @@
   --dur-foto: 1800ms;
   --dur-escena: 2400ms;
   --dur-pulsar: 150ms;  /* press feedback */
+  --dur-reveal: 700ms;  /* scroll reveal, text */
+  --dur-reveal-foto: 1000ms;  /* scroll reveal, photos */
+  --paso-reveal: 90ms;  /* stagger between reveals in one section */
 }
