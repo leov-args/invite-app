@@ -1614,6 +1614,27 @@ main:focus {
   to { opacity: 1; }
 }
 
+/* ── Shared-element morphs (transicion.ts) ─────────────────────────── */
+
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-duration: 450ms;
+  animation-timing-function: var(--ease-suave);
+}
+
+/* Opening: the light condenses into the portrait at the old overlay's pace. */
+:root[data-morph="retrato"]::view-transition-group(*),
+:root[data-morph="retrato"]::view-transition-old(*),
+:root[data-morph="retrato"]::view-transition-new(*) {
+  animation-duration: var(--dur-foto);
+}
+
+/* The overlay text leaves first, so it never sits on top of the growing portrait. */
+:root[data-morph="retrato"]::view-transition-old(root) {
+  animation-duration: calc(var(--dur-foto) / 3);
+}
+
 /* ── Reveal (E3-3) ─────────────────────────────────────────────────── */
 
 .reveal {

@@ -1,5 +1,6 @@
 import { asset } from "../asset.ts";
 import { content } from "../content.ts";
+import { morph } from "./transicion.ts";
 
 /**
  * Returns the next or previous index, wrapping around at the ends.
@@ -54,12 +55,36 @@ function move(delta: number): void {
   render(paso(state.currentIndex, delta, content.galeria.length));
 }
 
+/** The gallery thumbnail for a photo, only while it is on screen (a morph to an off-screen spot looks broken). */
+function miniaturaVisible(index: number): HTMLElement | undefined {
+  const img = document.querySelectorAll<HTMLElement>(".galeria__boton img")[index];
+  if (!img) return undefined;
+  const rect = img.getBoundingClientRect();
+  return rect.bottom > 0 && rect.top < innerHeight ? img : undefined;
+}
+
 export function abrirLightbox(index: number): void {
   if (!state || content.galeria.length === 0) return;
+  const { dialog, closeButton, img } = state;
 
-  render(index);
-  state.dialog.showModal();
-  state.closeButton.focus();
+  const open = (): void => {
+    render(index);
+    dialog.showModal();
+    closeButton.focus();
+  };
+
+  const thumb = miniaturaVisible(index);
+  if (thumb) morph("foto", thumb, img, open);
+  else open();
+}
+
+function cerrarLightbox(): void {
+  if (!state) return;
+  const { dialog, img } = state;
+
+  const thumb = miniaturaVisible(state.currentIndex);
+  if (thumb) morph("foto", img, thumb, () => dialog.close());
+  else dialog.close();
 }
 
 export function initLightbox(): void {
@@ -92,7 +117,19 @@ export function initLightbox(): void {
     currentIndex: 0,
   };
 
-  closeButton.addEventListener("click", () => dialog.close());
+  closeButton.addEventListener("click", cerrarLightbox);
+  // Esc morphs back too. Chrome may make `cancel` non-cancelable (it then just closes),
+  // so Esc is caught on keydown; `cancel` still covers the Android back gesture.
+  dialog.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    event.preventDefault();
+    cerrarLightbox();
+  });
+  dialog.addEventListener("cancel", (event) => {
+    if (!event.cancelable) return;
+    event.preventDefault();
+    cerrarLightbox();
+  });
   prevButton.addEventListener("click", () => move(-1));
   nextButton.addEventListener("click", () => move(1));
 
