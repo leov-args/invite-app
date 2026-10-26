@@ -127,7 +127,7 @@ export const content = {
     // RSVP popup (SPEC §5.9).
     rsvp: {
       etiqueta: "CONFIRMA TU ASISTENCIA",
-      texto: "Nos acompañará mucho saber que estarás con nosotros.",
+      texto: "Tu compañía significará mucho para nosotros.",
       confirmar: "Confirmar asistencia",
       titulo: "Confirmar asistencia",
       cerrar: "Cerrar",

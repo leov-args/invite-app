@@ -353,7 +353,7 @@ Si `rsvp.endpoint` está vacío, la sección y los botones "Confirmar asistencia
 
 **Sección en la página** (fondo bruma, tarjeta blanca con la misma estética que §5.4):
 - Etiqueta "CONFIRMA TU ASISTENCIA".
-- Texto: "Nos acompañará mucho saber que estarás con nosotros." Si existe `fechaLimiteTexto`, va debajo en `--c-texto-2`.
+- Texto: "Tu compañía significará mucho para nosotros." Si existe `fechaLimiteTexto`, va debajo en `--c-texto-2`.
 - Botón primario **"Confirmar asistencia"**, que abre el popup. Es el mismo popup que abre el botón de §5.6.
 
 **Popup** (`<dialog>` nativo con `showModal()`, que da gratis el foco atrapado, el cierre con Esc y el `::backdrop`):
