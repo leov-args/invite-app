@@ -63,6 +63,7 @@ export const content = {
     hero: {
       etiqueta: "EN MEMORIA DE",
       retratoAlt: "Juana Neyi sonriendo, con la mano apoyada en la mejilla",
+      siguiente: "Seguir leyendo",
     },
     // Nursing section (SPEC §5.2).
     vocacion: {

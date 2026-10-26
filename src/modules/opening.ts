@@ -1,5 +1,7 @@
 import { content } from "../content.ts";
 import { playMusic } from "./music.ts";
+import { morph, puedeTransicionar } from "./transicion.ts";
+import { iniciarPresentacion } from "./presentacion.ts";
 
 const STORAGE_KEY = "apertura-vista";
 
@@ -18,6 +20,8 @@ export function initOpening(): void {
   const button = document.querySelector<HTMLButtonElement>(".apertura__boton");
   const buttonText = button?.querySelector<HTMLSpanElement>("span");
   const main = document.querySelector<HTMLElement>("main#contenido");
+  const halo = document.querySelector<HTMLElement>(".apertura__halo");
+  const portrait = document.querySelector<HTMLElement>(".hero__retrato");
 
   if (!overlay || !phrase || !button || !buttonText || !main) return;
 
@@ -38,6 +42,7 @@ export function initOpening(): void {
     main!.removeAttribute("inert");
     main!.focus({ preventScroll: true });
     setThemeColor(getMarfilColor());
+    iniciarPresentacion();
     try {
       sessionStorage.setItem(STORAGE_KEY, "1");
     } catch {
@@ -49,6 +54,13 @@ export function initOpening(): void {
     if (opening) return;
     opening = true;
     playMusic();
+
+    // The opening light condenses into the portrait; the fade below is the fallback.
+    if (halo && portrait && puedeTransicionar()) {
+      morph("retrato", halo, portrait, finishOpen);
+      return;
+    }
+
     overlay.classList.add("apertura--abriendo");
 
     const animations = overlay.getAnimations();
