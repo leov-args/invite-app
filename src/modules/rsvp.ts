@@ -29,6 +29,76 @@ export function validarRsvp(datos: {
   return errores;
 }
 
+const STORAGE_KEY = "invite-app:rsvp";
+
+export type StoredConfirmation = {
+  nombre: string;
+  personas: number;
+  fecha: string;
+};
+
+/**
+ * Reads the stored RSVP confirmation from the provided storage object.
+ * Returns null when the key is missing, the storage throws, the JSON is
+ * invalid, or the stored shape does not match the expected contract.
+ */
+export function leerConfirmacion(
+  storage: Pick<Storage, "getItem" | "setItem">,
+): StoredConfirmation | null {
+  let raw: string | null = null;
+  try {
+    raw = storage.getItem(STORAGE_KEY);
+  } catch {
+    return null;
+  }
+  if (raw === null) return null;
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    return null;
+  }
+
+  if (parsed === null || typeof parsed !== "object") return null;
+  const record = parsed as Record<string, unknown>;
+
+  if (typeof record.nombre !== "string" || record.nombre.trim() === "") {
+    return null;
+  }
+  if (typeof record.fecha !== "string" || record.fecha.trim() === "") {
+    return null;
+  }
+  if (
+    !Number.isInteger(record.personas) ||
+    (record.personas as number) < 1 ||
+    (record.personas as number) > 10
+  ) {
+    return null;
+  }
+
+  return {
+    nombre: record.nombre.trim(),
+    personas: record.personas as number,
+    fecha: record.fecha,
+  };
+}
+
+/**
+ * Saves the RSVP confirmation to the provided storage object. Never throws:
+ * failures such as Safari private mode are silently ignored.
+ */
+export function guardarConfirmacion(
+  storage: Pick<Storage, "getItem" | "setItem">,
+  datos: StoredConfirmation,
+): void {
+  try {
+    storage.setItem(STORAGE_KEY, JSON.stringify(datos));
+  } catch {
+    // Ignore storage errors.
+  }
+}
+
 type RsvpState =
   | { status: "idle" }
   | { status: "sending" }
@@ -52,11 +122,19 @@ type RsvpElements = {
   successView: HTMLElement;
   thanks: HTMLElement;
   closeSuccessButton: HTMLButtonElement;
+  text: HTMLElement;
+  openButton: HTMLButtonElement;
+  confirmedText: HTMLElement;
+  anotherButton: HTMLButtonElement;
 };
 
 let elements: RsvpElements | null = null;
 let opener: HTMLElement | null = null;
 let currentState: RsvpState = { status: "idle" };
+let storedConfirmation: { nombre: string; personas: number } | null = null;
+let shareButton: HTMLButtonElement | null = null;
+let shareNotice: HTMLElement | null = null;
+let shareNoticeTimer: ReturnType<typeof setTimeout> | null = null;
 
 function $(selector: string, context: ParentNode = document): HTMLElement | null {
   return context.querySelector(selector);
@@ -139,6 +217,43 @@ function resetForm(): void {
   renderState();
 }
 
+function isFocusable(el: HTMLElement | null): el is HTMLElement {
+  return el !== null && el.isConnected && !el.hidden && el.closest("[hidden]") === null;
+}
+
+function renderCardState(): void {
+  if (!elements) return;
+  const texts = content.textos.rsvp;
+
+  if (storedConfirmation) {
+    elements.confirmedText.textContent = texts.yaConfirmaste
+      .replace("{nombre}", storedConfirmation.nombre)
+      .replace("{personas}", String(storedConfirmation.personas));
+    elements.confirmedText.hidden = false;
+    elements.anotherButton.hidden = false;
+    elements.text.hidden = true;
+    elements.openButton.hidden = true;
+  } else {
+    elements.confirmedText.hidden = true;
+    elements.anotherButton.hidden = true;
+    elements.text.hidden = false;
+    elements.openButton.hidden = false;
+  }
+}
+
+function showShareNotice(message: string): void {
+  if (!shareNotice) return;
+  shareNotice.textContent = message;
+  shareNotice.classList.add("rsvp__aviso--visible");
+  if (shareNoticeTimer !== null) {
+    clearTimeout(shareNoticeTimer);
+  }
+  shareNoticeTimer = setTimeout(() => {
+    shareNotice?.classList.remove("rsvp__aviso--visible");
+    shareNoticeTimer = null;
+  }, 2500);
+}
+
 async function handleSubmit(event: SubmitEvent): Promise<void> {
   event.preventDefault();
   if (!elements || currentState.status === "sending") return;
@@ -187,7 +302,17 @@ async function handleSubmit(event: SubmitEvent): Promise<void> {
 
     const data = (await response.json()) as { ok?: boolean };
     if (data.ok === true) {
-      currentState = { status: "success", nombre: nombre.trim() };
+      const nombreLimpio = nombre.trim();
+      const personas = Number(personasRaw);
+      const fecha = new Date().toISOString();
+      currentState = { status: "success", nombre: nombreLimpio };
+      storedConfirmation = { nombre: nombreLimpio, personas };
+      try {
+        guardarConfirmacion(window.localStorage, { nombre: nombreLimpio, personas, fecha });
+      } catch {
+        // Accessing window.localStorage can throw; a failure is silently ignored.
+      }
+      renderCardState();
     } else {
       currentState = { status: "error" };
     }
@@ -248,8 +373,13 @@ export function initRsvp(): void {
 
   const label = $(".rsvp__etiqueta", section) as HTMLElement | null;
   const text = $(".rsvp__texto", section) as HTMLElement | null;
+  const confirmedText = $(".rsvp__confirmado", section) as HTMLElement | null;
+  const anotherButton = $(".rsvp__otra", section) as HTMLButtonElement | null;
   const deadline = $(".rsvp__fecha-limite", section) as HTMLElement | null;
   const openButton = $(".rsvp__confirmar", section) as HTMLButtonElement | null;
+
+  shareButton = $(".rsvp__compartir", section) as HTMLButtonElement | null;
+  shareNotice = $(".rsvp__aviso", section) as HTMLElement | null;
 
   const title = $(".rsvp-dialogo__titulo", dialog) as HTMLElement | null;
   const closeButton = $(".rsvp-dialogo__cerrar", dialog) as HTMLButtonElement | null;
@@ -275,7 +405,7 @@ export function initRsvp(): void {
   const peopleHelp = $("#rsvp-personas-ayuda", dialog) as HTMLElement | null;
 
   if (
-    !label || !text || !deadline || !openButton ||
+    !label || !text || !confirmedText || !anotherButton || !deadline || !openButton ||
     !title || !closeButton || !form || !nameInput ||
     !peopleSelect || !messageInput || !submitButton ||
     !submitText || !spinner || !nameError || !peopleError || !messageError ||
@@ -302,12 +432,30 @@ export function initRsvp(): void {
     successView,
     thanks,
     closeSuccessButton,
+    text,
+    openButton,
+    confirmedText,
+    anotherButton,
   };
+
+  try {
+    const saved = leerConfirmacion(window.localStorage);
+    if (saved) {
+      storedConfirmation = { nombre: saved.nombre, personas: saved.personas };
+    }
+  } catch {
+    storedConfirmation = null;
+  }
+  renderCardState();
 
   const texts = content.textos.rsvp;
   label.textContent = texts.etiqueta;
   text.textContent = texts.texto;
   openButton.querySelector("span")!.textContent = texts.confirmar;
+  anotherButton.querySelector("span")!.textContent = texts.otraPersona;
+  if (shareButton) {
+    shareButton.querySelector("span")!.textContent = texts.compartir;
+  }
 
   const deadlineText = content.rsvp.fechaLimiteTexto.trim();
   if (deadlineText) {
@@ -327,15 +475,45 @@ export function initRsvp(): void {
   spinner.hidden = true;
 
   openButton.addEventListener("click", () => abrirRsvp(openButton));
+  anotherButton.addEventListener("click", () => abrirRsvp(anotherButton));
   closeButton.addEventListener("click", () => dialog.close());
   closeSuccessButton.addEventListener("click", () => dialog.close());
   form.addEventListener("submit", handleSubmit);
+
+  shareButton?.addEventListener("click", async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: content.sitio.titulo,
+          text: content.sitio.descripcion,
+          url: content.sitio.url,
+        });
+        return;
+      } catch (error) {
+        if (error instanceof Error && error.name === "AbortError") return;
+      }
+    }
+
+    const write = navigator.clipboard?.writeText(content.sitio.url);
+    if (!write) {
+      showShareNotice(texts.enlaceError);
+      return;
+    }
+
+    write
+      .then(() => showShareNotice(texts.enlaceCopiado))
+      .catch(() => showShareNotice(texts.enlaceError));
+  });
 
   dialog.addEventListener("close", () => {
     if (currentState.status === "success") {
       resetForm();
     }
-    opener?.focus();
+    if (isFocusable(opener)) {
+      opener.focus();
+    } else if (elements && isFocusable(elements.anotherButton)) {
+      elements.anotherButton.focus();
+    }
     opener = null;
   });
 

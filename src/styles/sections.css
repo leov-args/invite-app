@@ -898,7 +898,9 @@ main:focus {
   display: none;
 }
 
-.ubicacion__copiar {
+.ubicacion__copiar,
+.rsvp__otra,
+.rsvp__compartir {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -916,20 +918,27 @@ main:focus {
   transition: opacity var(--dur-pulsar) var(--ease-suave);
 }
 
-.ubicacion__copiar[hidden] {
+.ubicacion__copiar[hidden],
+.rsvp__otra[hidden],
+.rsvp__compartir[hidden] {
   display: none;
 }
 
-.ubicacion__copiar:active {
+.ubicacion__copiar:active,
+.rsvp__otra:active,
+.rsvp__compartir:active {
   opacity: 0.75;
 }
 
-.ubicacion__copiar:focus-visible {
+.ubicacion__copiar:focus-visible,
+.rsvp__otra:focus-visible,
+.rsvp__compartir:focus-visible {
   outline: 2px solid var(--c-turquesa-profundo);
   outline-offset: 3px;
 }
 
-.ubicacion__aviso {
+.ubicacion__aviso,
+.rsvp__aviso {
   flex-basis: 100%;
   margin: 0;
   font-family: var(--f-sans);
@@ -945,7 +954,8 @@ main:focus {
     visibility 250ms var(--ease-suave);
 }
 
-.ubicacion__aviso--visible {
+.ubicacion__aviso--visible,
+.rsvp__aviso--visible {
   opacity: 1;
   visibility: visible;
 }
@@ -957,7 +967,8 @@ main:focus {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ubicacion__aviso {
+  .ubicacion__aviso,
+  .rsvp__aviso {
     transition: none;
   }
 }
@@ -1029,7 +1040,8 @@ main:focus {
 
 /* ── RSVP popup (E6-2, SPEC §5.9) ──────────────────────────────────── */
 
-.rsvp__texto {
+.rsvp__texto,
+.rsvp__confirmado {
   max-inline-size: 28ch;
   margin: 0 auto;
   font-family: var(--f-sans);
@@ -1037,6 +1049,11 @@ main:focus {
   font-size: 16px;
   line-height: 1.6;
   color: var(--c-texto);
+}
+
+.rsvp__texto[hidden],
+.rsvp__confirmado[hidden] {
+  display: none;
 }
 
 .rsvp__fecha-limite {
@@ -1053,6 +1070,14 @@ main:focus {
 
 .rsvp__confirmar {
   margin-block-start: 1.5rem;
+}
+
+.rsvp__otra {
+  margin-block-start: 1.5rem;
+}
+
+.rsvp__compartir {
+  margin-block-start: 1.25rem;
 }
 
 :root:has(.rsvp-dialogo[open]) {
