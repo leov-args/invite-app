@@ -6,6 +6,8 @@
     <meta name="robots" content="noindex">
     <meta name="theme-color" content="#0B1219">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <!-- LCP: hero portrait, same file hero.ts sets from content.persona.retrato. -->
+    <link rel="preload" as="image" href="/assets/fotos/01-retrato.webp" type="image/webp" fetchpriority="high">
     <script>
       // Duplicated key in src/modules/opening.ts.
       try { if (sessionStorage.getItem('apertura-vista')) document.documentElement.classList.add('abierta'); } catch {}
@@ -30,7 +32,7 @@
         <div class="hero__retrato">
           <picture>
             <source type="image/webp">
-            <img alt="" width="830" height="830" decoding="async">
+            <img alt="" width="830" height="830" decoding="async" fetchpriority="high">
           </picture>
         </div>
         <p class="hero__etiqueta"></p>
