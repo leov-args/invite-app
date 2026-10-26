@@ -27,6 +27,7 @@
 - Closing section (SPEC §5.10): luminous white band with a warm radial halo, "Su recuerdo permanece en nuestros corazones." in Cormorant italic from `content.textos.cierre`, `cruz-luz.png` revealed over 2.4 s (`--dur-escena`, short fade under reduced motion), optional `contacto.firmaFamilia` signature in Montserrat 300 14 px `--c-texto-2` shown only when set, and `flores-borde` at the foot; `src/modules/cierre.ts` (E7-4).
 
 ### Fixed
+- Performance (SPEC §7): the hero portrait (LCP) is preloaded with `fetchpriority="high"`; Lighthouse mobile Performance 0.95 → 0.98, LCP 2.8 → 2.3 s (E8-2).
 - Accessibility (SPEC §6): no sideways scroll at 200 % zoom (hero portrait fits the column, hero clips its halo box, countdown wraps to 2 columns ≤ 340 px and 1 ≤ 240 px); RSVP fields, the tribute video and the map get the 2 px `--c-turquesa-profundo` focus ring (E8-1).
 
 ### Changed
