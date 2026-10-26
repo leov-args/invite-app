@@ -246,14 +246,28 @@ main:focus {
   max-inline-size: 100%;
 }
 
+/* A 44 px button; the 10 px inset offset keeps the 24 px chevron where it was. */
 .hero__scroll {
   position: absolute;
-  inset-block-end: calc(24px + env(safe-area-inset-bottom));
+  inset-block-end: calc(14px + env(safe-area-inset-bottom));
   inset-inline: 0;
-  inline-size: 24px;
+  display: grid;
+  place-items: center;
+  inline-size: 44px;
+  block-size: 44px;
   margin-inline: auto;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radio-pildora);
+  background: transparent;
   color: var(--c-plata);
+  cursor: pointer;
   animation: hero-pulse 2.6s ease-in-out infinite alternate;
+}
+
+.hero__scroll:focus-visible {
+  outline: 2px solid var(--c-turquesa-profundo);
+  outline-offset: 3px;
 }
 
 .hero__scroll svg {

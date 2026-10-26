@@ -1,6 +1,7 @@
 import { content } from "../content.ts";
 import { playMusic } from "./music.ts";
 import { morph, puedeTransicionar } from "./transicion.ts";
+import { iniciarPresentacion } from "./presentacion.ts";
 
 const STORAGE_KEY = "apertura-vista";
 
@@ -41,6 +42,7 @@ export function initOpening(): void {
     main!.removeAttribute("inert");
     main!.focus({ preventScroll: true });
     setThemeColor(getMarfilColor());
+    iniciarPresentacion();
     try {
       sessionStorage.setItem(STORAGE_KEY, "1");
     } catch {

@@ -16,4 +16,11 @@ export function initHero(): void {
   source.srcset = asset(`${content.persona.retrato}.webp`);
   img.src = asset(`${content.persona.retrato}.jpg`);
   img.alt = content.textos.hero.retratoAlt;
+
+  const next = document.querySelector<HTMLButtonElement>(".hero__scroll");
+  if (next) {
+    next.setAttribute("aria-label", content.textos.hero.siguiente);
+    // Smooth through the CSS scroll-behavior, which reduced motion turns off.
+    next.addEventListener("click", () => next.closest("section")?.nextElementSibling?.scrollIntoView());
+  }
 }
