@@ -26,6 +26,9 @@
 - Tribute video (SPEC §5.8): "UN RECUERDO" section after the gallery with a 9:16 `<video>` (controls, `preload="none"`, `playsinline`, poster, max 320 px, centered, gallery radius and soft shadow); `src/modules/video.ts` pauses the background music on `play` with a 600 ms GainNode fade via the new `pauseMusicForVideo()` in `music.ts`, and the music never resumes by itself (E7-3).
 - Closing section (SPEC §5.10): luminous white band with a warm radial halo, "Su recuerdo permanece en nuestros corazones." in Cormorant italic from `content.textos.cierre`, `cruz-luz.png` revealed over 2.4 s (`--dur-escena`, short fade under reduced motion), optional `contacto.firmaFamilia` signature in Montserrat 300 14 px `--c-texto-2` shown only when set, and `flores-borde` at the foot; `src/modules/cierre.ts` (E7-4).
 
+### Fixed
+- Accessibility (SPEC §6): no sideways scroll at 200 % zoom (hero portrait fits the column, hero clips its halo box, countdown wraps to 2 columns ≤ 340 px and 1 ≤ 240 px); RSVP fields, the tribute video and the map get the 2 px `--c-turquesa-profundo` focus ring (E8-1).
+
 ### Changed
 - Viewport meta gains `viewport-fit=cover` for the safe-area offsets; SPEC music button icon uses `--c-turquesa-profundo` for 3:1 contrast (E2-2).
 - `theme-color` starts as noche for the opening screen and switches to marfil once opened (SPEC §5.0, §7); the temporary type/palette test page in `main.ts` is gone (E2-1).

@@ -134,7 +134,9 @@ E0-1 y E0-3 pueden hacerse en paralelo con E1. E0-2 necesita E6-1 (el script) y 
 
 ## E8. Pulido y lanzamiento
 
-- [ ] **E8-1 Accesibilidad y movimiento** (§6): contraste AA, `alt` en español, foco visible, zoom al 200 % y reduced motion.
+- [x] ~~**E8-1 Accesibilidad y movimiento** (§6): contraste AA, `alt` en español, foco visible, zoom al 200 % y reduced motion.~~ **Hecho (2026-10-26)**
+  Decisions (2026-10-26): phase spec in `~/Documents/spec/2026-10-26-e8-pulido-lanzamiento/` (level M, gates waived by the user, implemented inline by Claude); audit by measurement, fixes only where something failed.
+  Closing notes: audit on `vite preview` at 375×812: contrast computed against every gradient stop for all visible text in `<main>` and the RSVP dialog (min 4.99:1 large, 5.01:1 small) and axe-core with no violations; Spanish alts on the 10 content photos, decorations `alt=""` + `aria-hidden`; reduced-motion overrides exist for every loop and the reveal. Fixed: at 200 % zoom (188 CSS px) the page scrolled sideways (240 px portrait floor, portrait halo box, 4-column countdown that already overflowed below ~328 px); the portrait now fits the column, `.hero` clips its horizontal overflow, the countdown uses 2 columns ≤ 340 px and 1 ≤ 240 px; RSVP fields (a 1.2:1 halo), the video (UA ring) and the map (none) now get the 2 px `--c-turquesa-profundo` ring. Verified at 188, 320 and 375 px: no horizontal scroll, no overlapping text. Real-device text zoom stays in E8-3.
 - [ ] **E8-2 Rendimiento** (§7): primera carga < 1 MB y Lighthouse móvil ≥ 90 en Performance y Accesibilidad.
 - [ ] **E8-3 Datos finales y prueba en dispositivos**: sin `TODO` en `content.ts`; recorrer los criterios de SPEC §9 en iOS Safari, Chrome Android y el navegador interno de WhatsApp; hacer una confirmación real y borrarla de la hoja. Comprobar también que el fade de la música se oye en un iPhone real (R2) y que el mapa embebido carga (R3).
   *Depende de:* E0-3 y todas las anteriores.
