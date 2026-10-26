@@ -151,13 +151,16 @@ main:focus {
   min-block-size: 100svh;
   padding-block: clamp(2rem, 8vh, 4rem);
   text-align: center;
+  /* The portrait halo box (inset -30%) is transparent at its edges; it must not widen the page. */
+  overflow-x: clip;
 }
 
 .hero__retrato {
   position: relative;
   isolation: isolate;
-  inline-size: clamp(240px, 64vw, 280px);
-  block-size: clamp(240px, 64vw, 280px);
+  /* 100% - 22px keeps the 10px-offset outline inside the column at 200 % zoom. */
+  inline-size: min(clamp(240px, 64vw, 280px), 100% - 22px);
+  aspect-ratio: 1;
   border-radius: 50%;
   border: 3px solid var(--c-turquesa);
   outline: 1px solid var(--c-plata);
@@ -659,6 +662,19 @@ main:focus {
   text-align: center;
 }
 
+/* Four cells need ~330px of viewport; narrower screens or 200 % zoom wrap them. */
+@media (max-width: 340px) {
+  .misa__cuenta {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 240px) {
+  .misa__cuenta {
+    grid-template-columns: 1fr;
+  }
+}
+
 .misa__cuenta-celda[hidden] {
   display: none;
 }
@@ -932,7 +948,9 @@ main:focus {
 
 .ubicacion__copiar:focus-visible,
 .rsvp__otra:focus-visible,
-.rsvp__compartir:focus-visible {
+.rsvp__compartir:focus-visible,
+.video__reproductor:focus-visible,
+.ubicacion__mapa:focus-within {
   outline: 2px solid var(--c-turquesa-profundo);
   outline-offset: 3px;
 }
@@ -1251,9 +1269,9 @@ main:focus {
 .rsvp-dialogo__campo input:focus,
 .rsvp-dialogo__campo select:focus,
 .rsvp-dialogo__campo textarea:focus {
-  outline: none;
+  outline: 2px solid var(--c-turquesa-profundo);
+  outline-offset: 2px;
   border-color: var(--c-turquesa-profundo);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--c-turquesa) 25%, transparent);
 }
 
 .rsvp-dialogo__ayuda {
