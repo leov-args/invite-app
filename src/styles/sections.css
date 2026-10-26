@@ -297,7 +297,13 @@ main:focus {
   margin-inline: -20px;
   padding: var(--espacio-seccion) 20px;
   text-align: center;
-  background: linear-gradient(180deg, var(--c-turquesa-suave), var(--c-agua-claro));
+  /* Starts transparent so the hero's ambient light flows into the turquoise. */
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--c-turquesa-suave) var(--espacio-seccion),
+    var(--c-agua-claro) 100%
+  );
 }
 
 .vocacion::before {
@@ -426,11 +432,9 @@ main:focus {
   margin-inline: -20px;
   padding: var(--espacio-seccion) 20px;
   text-align: center;
-  background: linear-gradient(
-    180deg,
-    var(--c-marfil) 0%,
-    color-mix(in srgb, var(--c-luz-calida-suave) 50%, var(--c-marfil)) 100%
-  );
+  background:
+    linear-gradient(var(--c-agua-claro), transparent var(--espacio-seccion)),
+    linear-gradient(180deg, var(--c-marfil) 0%, var(--c-crema) 100%);
 }
 
 .mensaje::before {
@@ -521,11 +525,18 @@ main:focus {
   margin-inline: -20px;
   padding: var(--espacio-seccion) 20px;
   text-align: center;
-  background: linear-gradient(
-    180deg,
-    var(--c-bruma) 0%,
-    color-mix(in srgb, var(--c-blanco) 60%, var(--c-bruma)) 100%
-  );
+  background:
+    linear-gradient(var(--desde, transparent), transparent var(--espacio-seccion)),
+    linear-gradient(180deg, var(--c-bruma) 0%, var(--c-bruma-clara) 100%);
+}
+
+/* Each section fades in from the colour the previous one ends on, so no hard seam shows. */
+.misa {
+  --desde: var(--c-crema);
+}
+
+.rsvp {
+  --desde: var(--c-marfil);
 }
 
 .misa::before,
@@ -547,11 +558,7 @@ main:focus {
 
 /* Continue the mass card background into the location section. */
 .ubicacion {
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--c-blanco) 60%, var(--c-bruma)) 0%,
-    var(--c-bruma) 100%
-  );
+  background: linear-gradient(180deg, var(--c-bruma-clara) 0%, var(--c-bruma) 100%);
 }
 
 .misa__tarjeta,
@@ -997,7 +1004,7 @@ main:focus {
   margin-inline: -20px;
   padding: var(--espacio-seccion) 20px;
   text-align: center;
-  background-color: var(--c-marfil);
+  background: linear-gradient(var(--c-bruma-clara), transparent var(--espacio-seccion)) var(--c-marfil);
 }
 
 .galeria__subtitulo {
@@ -1426,7 +1433,14 @@ main:focus {
   margin-inline: -20px;
   padding: var(--espacio-seccion) 20px;
   text-align: center;
-  background: radial-gradient(ellipse at 50% 35%, var(--c-luz-calida-suave) 0%, var(--c-blanco) 70%);
+  background:
+    linear-gradient(var(--desde, var(--c-bruma-clara)), transparent var(--espacio-seccion)),
+    radial-gradient(ellipse at 50% 35%, var(--c-luz-calida-suave) 0%, var(--c-blanco) 70%);
+}
+
+/* Without the RSVP section the closing follows the ivory video section. */
+.rsvp[hidden] + .cierre {
+  --desde: var(--c-marfil);
 }
 
 .cierre__frase {
@@ -1604,22 +1618,29 @@ main:focus {
 
 .reveal {
   opacity: 0;
-  translate: 0 16px;
+  translate: 0 12px;
   transition:
-    opacity var(--dur-texto) var(--ease-suave),
-    translate var(--dur-texto) var(--ease-suave);
-  transition-delay: calc(var(--reveal-i, 0) * 250ms);
+    opacity var(--dur-reveal) var(--ease-suave),
+    translate var(--dur-reveal) var(--ease-suave);
+  transition-delay: calc(var(--reveal-i, 0) * var(--paso-reveal));
 }
 
 .reveal--foto {
-  filter: blur(8px);
-  scale: 1.04;
+  filter: blur(4px);
+  scale: 1.03;
   transition:
-    opacity var(--dur-foto) var(--ease-suave),
-    translate var(--dur-foto) var(--ease-suave),
-    filter var(--dur-foto) var(--ease-suave),
-    scale var(--dur-foto) var(--ease-suave);
-  transition-delay: calc(var(--reveal-i, 0) * 250ms);
+    opacity var(--dur-reveal-foto) var(--ease-suave),
+    translate var(--dur-reveal-foto) var(--ease-suave),
+    filter var(--dur-reveal-foto) var(--ease-suave),
+    scale var(--dur-reveal-foto) var(--ease-suave);
+  transition-delay: calc(var(--reveal-i, 0) * var(--paso-reveal));
+}
+
+/* The hero is the opening scene, not a scroll reveal: it keeps the slow entrance. */
+.hero {
+  --dur-reveal: var(--dur-texto);
+  --dur-reveal-foto: var(--dur-foto);
+  --paso-reveal: 250ms;
 }
 
 .reveal.is-visible {
@@ -1635,12 +1656,12 @@ main:focus {
 /* Revealed content stays hidden while the opening overlay is covering it. */
 :root:has(.apertura:not(.apertura--abriendo)) .reveal.is-visible {
   opacity: 0;
-  translate: 0 16px;
+  translate: 0 12px;
 }
 
 :root:has(.apertura:not(.apertura--abriendo)) .reveal--foto.is-visible {
-  filter: blur(8px);
-  scale: 1.04;
+  filter: blur(4px);
+  scale: 1.03;
 }
 
 @media (prefers-reduced-motion: reduce) {

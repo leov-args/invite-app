@@ -51,16 +51,22 @@ export function initReveal(): void {
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
       (entries) => {
+        // Stagger only within a section, so a fast scroll does not chain unrelated sections.
+        const perSection = new Map<Element | null, number>();
         entries
           .filter((entry) => entry.isIntersecting)
-          .forEach((entry, index) => {
+          .forEach((entry) => {
             const target = entry.target as HTMLElement;
+            const section = target.closest("section");
+            const index = perSection.get(section) ?? 0;
+            perSection.set(section, index + 1);
             target.style.setProperty("--reveal-i", String(index));
             target.classList.add("is-visible");
             observer.unobserve(target);
           });
       },
-      { rootMargin: "0px 0px 20% 0px", threshold: 0 },
+      // Fire once the element is truly on screen, so the motion is seen rather than missed.
+      { rootMargin: "0px 0px -10% 0px", threshold: 0 },
     );
 
     targets.forEach((el) => observer.observe(el));

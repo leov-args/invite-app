@@ -31,6 +31,7 @@
 - Accessibility (SPEC §6): no sideways scroll at 200 % zoom (hero portrait fits the column, hero clips its halo box, countdown wraps to 2 columns ≤ 340 px and 1 ≤ 240 px); RSVP fields, the tribute video and the map get the 2 px `--c-turquesa-profundo` focus ring (E8-1).
 
 ### Changed
+- Section transitions: every section now fades in from the colour the previous one ends on over its top `--espacio-seccion` (vocación from transparent, cierre from marfil when RSVP is hidden), removing five hard colour seams; new `--c-crema` and `--c-bruma-clara` tokens. Scroll reveal is faster and fires once on screen (`--dur-reveal` 700 ms, `--dur-reveal-foto` 1000 ms, 12 px rise, 4 px blur, 90 ms stagger counted per section, `rootMargin` −10 %); the hero keeps its slow opening entrance.
 - Viewport meta gains `viewport-fit=cover` for the safe-area offsets; SPEC music button icon uses `--c-turquesa-profundo` for 3:1 contrast (E2-2).
 - `theme-color` starts as noche for the opening screen and switches to marfil once opened (SPEC §5.0, §7); the temporary type/palette test page in `main.ts` is gone (E2-1).
 - SPEC §4.1 and §6: corrected contrast notes; `--c-turquesa-tinta` for small text on the "Su vocación" background and `--c-turquesa-profundo` for the focus ring (E1-2).
