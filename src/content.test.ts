@@ -3,8 +3,8 @@ import { strict as assert } from "node:assert";
 import { content } from "./content.ts";
 
 describe("content.ts", () => {
-  it("mass date parses to 2027-01-16T16:00:00.000Z UTC", () => {
-    assert.equal(new Date(content.misa.fechaISO).toISOString(), "2027-01-16T16:00:00.000Z");
+  it("mass date parses to 2027-01-16T16:45:00.000Z UTC", () => {
+    assert.equal(new Date(content.misa.fechaISO).toISOString(), "2027-01-16T16:45:00.000Z");
   });
 
   it("asset paths start with 'assets/' and never with '/'", () => {

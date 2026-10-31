@@ -4,7 +4,7 @@ export const content = {
     url: "https://leov-args.github.io/invite-app/",
     // Used for <title>, description and og:*. WhatsApp crawler does not run JS.
     titulo: "Misa en memoria de Juana Neyi Trigueros Balcazar",
-    descripcion: "Con cariño y gratitud, te invitamos a acompañarnos. 16 de enero de 2027, 11:00 a. m., Santa Cruz de Flores.",
+    descripcion: "Con cariño y gratitud, te invitamos a acompañarnos. 16 de enero de 2027, 11:45 a. m., Santa Cruz de Flores.",
   },
   persona: {
     nombre: "Juana Neyi",
@@ -13,13 +13,13 @@ export const content = {
     retrato: "assets/fotos/01-retrato",
   },
   misa: {
-    // Confirmed: 2027-01-16 11:00 Lima time (UTC-5, no daylight saving).
-    fechaISO: "2027-01-16T11:00:00-05:00",
+    // Confirmed: 2027-01-16 11:45 Lima time (UTC-5, no daylight saving).
+    fechaISO: "2027-01-16T11:45:00-05:00",
     fechaTexto: "16 de enero de 2027",
-    horaTexto: "11:00 a. m.",
+    horaTexto: "11:45 a. m.",
     lugarNombre: "Iglesia Matriz de Santa Cruz de Flores",
     // TODO: confirm exact street address
-    lugarDireccion: "Santa Cruz de Flores, Cañete, Lima",
+    lugarDireccion: "Mala - Cañete",
   },
   // RF-01 (SPEC §5.5).
   mapa: {

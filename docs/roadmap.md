@@ -5,7 +5,7 @@ Revisión y decisiones de arquitectura: `~/Documents/spec/2026-10-25-misa-juana-
 
 **Reglas para quien ejecute:** solo cambiar los archivos de la tarea; sin dependencias nuevas (solo `vite` y `typescript`); reutilizar `asset()`, `content.ts` y los tokens antes de escribir algo nuevo; sin helpers especulativos; no hacer commit, merge ni push sin aprobación.
 
-**Meta:** sitio **completo** antes de compartir el link (no se publica por partes a los invitados). Fecha del evento: **16/01/2027, 11:00 (Lima)**. El link debe salir lo antes posible.
+**Meta:** sitio **completo** antes de compartir el link (no se publica por partes a los invitados). Fecha del evento: **16/01/2027, 11:45 (Lima)**. El link debe salir lo antes posible.
 
 Estado: `[ ]` pendiente · `[~]` en curso · `[x]` hecho
 
