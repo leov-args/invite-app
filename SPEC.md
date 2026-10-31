@@ -144,7 +144,7 @@ export const content = {
     url: "https://leov-args.github.io/invite-app/",     // URL pública final (para og:image/og:url absolutos)
     // Used for <title>, description and og:*. WhatsApp crawler does not run JS.
     titulo: "Misa en memoria de Juana Neyi Trigueros Balcazar",
-    descripcion: "Con cariño y gratitud, te invitamos a acompañarnos. 16 de enero de 2027, 11:00 a. m., Santa Cruz de Flores.",
+    descripcion: "Con cariño y gratitud, te invitamos a acompañarnos. 16 de enero de 2027, 11:45 a. m., Santa Cruz de Flores.",
   },
   persona: {
     nombre: "Juana Neyi",
@@ -152,11 +152,11 @@ export const content = {
     retrato: "assets/fotos/01-retrato",            // sin "/" inicial ni extensión: se sirve .webp con fallback .jpg vía asset()
   },
   misa: {
-    fechaISO: "2027-01-16T11:00:00-05:00",           // confirmado: 16/01/2027, 11:00 hora de Lima
+    fechaISO: "2027-01-16T11:45:00-05:00",           // confirmado: 16/01/2027, 11:45 hora de Lima
     fechaTexto: "16 de enero de 2027",
-    horaTexto: "11:00 a. m.",
+    horaTexto: "11:45 a. m.",
     lugarNombre: "Iglesia Matriz de Santa Cruz de Flores",
-    lugarDireccion: "Santa Cruz de Flores, Cañete, Lima", // TODO confirmar dirección textual exacta (calle / plaza)
+    lugarDireccion: "Mala - Cañete", // TODO confirmar dirección textual exacta (calle / plaza)
   },
   mapa: {                                            // RF-01 (§5.5)
     lat: -12.619852 as number | null,                // del link de la familia maps.app.goo.gl/C5i76UgbEMWBuY9PA (pin de la iglesia)
@@ -304,12 +304,12 @@ Los textos entre comillas se copian **literalmente**.
 - Fecha: "16 de enero de 2027" (de `content.misa.fechaTexto`).
 - Hora, lugar y dirección: cada línea **solo si su valor existe**, con iconos lineales finos en turquesa (reloj, iglesia, pin). Hay que reservar el espacio en el diseño, pero sin dejar huecos visibles cuando falten datos.
 - **Cuenta regresiva** con días, horas, minutos y segundos. Los números van en Cormorant 500 de 36 px y las etiquetas en Montserrat de 11 px en mayúsculas. Se calcula contra `fechaISO`, que ya incluye `-05:00`.
-  - Antes de `fechaISO` (11:00 de Lima): cuenta regresiva normal, también el mismo día por la mañana.
-  - Desde `fechaISO` hasta 3 h después (11:00–14:00 de Lima): "Hoy nos reunimos en su memoria".
+  - Antes de `fechaISO` (11:45 de Lima): cuenta regresiva normal, también el mismo día por la mañana.
+  - Desde `fechaISO` hasta 3 h después (11:45–14:45 de Lima): "Hoy nos reunimos en su memoria".
   - Después: se oculta la cuenta regresiva y se muestra "Gracias por acompañarnos".
   - La función de estado es pura (`estado(ahora, inicio)`) y tiene su `countdown.test.ts`.
 - Botones (píldora `--c-turquesa-profundo` con texto blanco y variante contorno):
-  - "Agregar al calendario": genera un `.ics` en **UTC** (`DTSTART:20270116T160000Z`, `DTEND:20270116T170000Z`, sin bloque VTIMEZONE), con `SUMMARY` "Misa en memoria de Juana Neyi Trigueros Balcazar" y `LOCATION` = `lugarNombre, lugarDireccion`. Ofrece también el enlace a Google Calendar con las mismas horas UTC.
+  - "Agregar al calendario": genera un `.ics` en **UTC** (`DTSTART:20270116T164500Z`, `DTEND:20270116T174500Z`, sin bloque VTIMEZONE), con `SUMMARY` "Misa en memoria de Juana Neyi Trigueros Balcazar" y `LOCATION` = `lugarNombre, lugarDireccion`. Ofrece también el enlace a Google Calendar con las mismas horas UTC.
   - "Ver ubicación": hace scroll suave hasta §5.5.
 
 ### 5.5 Ubicación de la misa (RF-01)
@@ -460,7 +460,7 @@ const json = (o) => ContentService.createTextOutput(JSON.stringify(o))
 - La primera carga (sin video ni audio) pesa menos de 1 MB. El audio se precarga solo después de abrir la invitación. Lighthouse móvil ≥ 90 en Performance y Accesibilidad.
 - Metadatos para la vista previa en WhatsApp:
   - `og:title` = "Misa en memoria de Juana Neyi Trigueros Balcazar"
-  - `og:description` = "Con cariño y gratitud, te invitamos a acompañarnos. 16 de enero de 2027, 11:00 a. m., Santa Cruz de Flores."
+  - `og:description` = "Con cariño y gratitud, te invitamos a acompañarnos. 16 de enero de 2027, 11:45 a. m., Santa Cruz de Flores."
   - `og:image` = `content.sitio.url + "assets/social/og-image.jpg"` (URL absoluta, 1200×630); `og:url` = `content.sitio.url`
   - `og:type` = "website" and `theme-color` starts as `--c-noche` (`#0B1219`) for the opening screen and switches to `--c-marfil` (`#F7F3EC`) once it is opened (E2-1)
 - `<meta name="robots" content="noindex">`, porque es un evento familiar privado.
@@ -494,7 +494,7 @@ Las fotos ya vienen recortadas en cuadrado. **No recortar con `object-fit` de fo
 - [ ] El turquesa aparece como acento en el aro, los separadores, las etiquetas, los botones y la sección "Su vocación", y nunca en áreas grandes saturadas.
 - [ ] Las dos fotos de graduación aparecen en "Su vocación" y en la galería.
 - [ ] Los datos sin completar (dirección, mapa del almuerzo, endpoint de confirmación, firma) no generan huecos ni placeholders visibles.
-- [ ] La cuenta regresiva es correcta en la hora de Lima desde cualquier zona horaria (probar desde Europe/Madrid): cuenta hasta las 11:00, "Hoy nos reunimos…" de 11:00 a 14:00 y "Gracias…" después.
+- [ ] La cuenta regresiva es correcta en la hora de Lima desde cualquier zona horaria (probar desde Europe/Madrid): cuenta hasta las 11:45, "Hoy nos reunimos…" de 11:45 a 14:45 y "Gracias…" después.
 - [ ] La música hace fade en iOS Safari (vía `GainNode`) y nunca se anima `audio.volume`.
 - [ ] El `.ics` se importa bien en Google Calendar y en Apple Calendar con la hora de Lima.
 - [ ] El video pausa la música y el botón de música funciona en iOS Safari y en Chrome Android.
@@ -511,7 +511,7 @@ Las fotos ya vienen recortadas en cuadrado. **No recortar con `object-fit` de fo
 El desglose en épicas y tareas, con dependencias y criterios de cada una, está en [`docs/roadmap.md`](docs/roadmap.md).
 
 ## 11. Preguntas abiertas
-Resueltas: el repo (`leov-args/invite-app`), la fecha (16/01/2027), la hora (11:00), la iglesia y su ubicación, que habrá almuerzo después y el canal de confirmación (Google Sheets).
+Resueltas: el repo (`leov-args/invite-app`), la fecha (16/01/2027), la hora (11:45), la iglesia y su ubicación, que habrá almuerzo después y el canal de confirmación (Google Sheets).
 
 1. Dirección textual exacta de la iglesia (calle o plaza) para `lugarDireccion`.
 2. Link de Google Maps del Local Comunal de Santa Cruz de Flores (opcional) y validar el texto de la tarjeta del almuerzo.
