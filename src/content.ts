@@ -167,6 +167,10 @@ export const content = {
     cierre: {
       frase: "Su recuerdo permanece en nuestros corazones.",
     },
+    // Printable A4 invitation (imprimir.html).
+    imprimir: {
+      misa: "MISA",
+    },
   },
   // SPEC §5.7 order; paths without leading "/" or extension; family reviews the alts (F10).
   galeria: [

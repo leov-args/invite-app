@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Invitación imprimible</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  </head>
+  <body>
+    <!-- A4 sheet: print from Chrome with margins "None". -->
+    <article class="hoja">
+      <div class="hoja__marco">
+        <div class="hoja__interior">
+          <header class="hoja__arriba">
+            <img class="hoja__flor hoja__flor--arriba" src="/assets/decoracion/flor-2.png" alt="">
+            <img class="hoja__flor hoja__flor--abajo" src="/assets/decoracion/flor-1.png" alt="">
+            <img class="hoja__retrato" src="/assets/fotos/01-retrato.jpg" alt="">
+            <p class="hoja__etiqueta" data-campo="etiqueta"></p>
+            <h1 class="hoja__nombre">
+              <span data-campo="nombre"></span>
+              <span class="hoja__apellidos" data-campo="apellidos"></span>
+            </h1>
+          </header>
+          <div class="hoja__abajo">
+            <p class="hoja__mensaje" data-campo="mensaje"></p>
+            <section class="hoja__bloque">
+              <h2 class="hoja__etiqueta" data-campo="misaEtiqueta"></h2>
+              <p class="hoja__fecha" data-campo="misaFecha"></p>
+              <p class="hoja__lugar"><span data-campo="misaLugar"></span><br><span data-campo="misaDireccion"></span></p>
+            </section>
+            <img class="hoja__separador" src="/assets/decoracion/separador-turquesa.png" alt="">
+            <section class="hoja__bloque" data-bloque="almuerzo">
+              <h2 class="hoja__etiqueta" data-campo="almuerzoEtiqueta"></h2>
+              <p class="hoja__lugar"><span data-campo="almuerzoTexto"></span><br><span data-campo="almuerzoLugar"></span></p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </article>
+    <script type="module" src="/src/imprimir.ts"></script>
+  </body>
+</html>

@@ -12,4 +12,9 @@ const htmlMetaPlugin: Plugin = {
 export default defineConfig({
   base: process.env.VITE_BASE ?? '/invite-app/',
   plugins: [htmlMetaPlugin],
+  build: {
+    rollupOptions: {
+      input: ['index.html', 'imprimir.html'],
+    },
+  },
 });
